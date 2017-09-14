@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from '../logo.svg';
 import './App.css';
 
-import OrderService from './services/OrderService';
+import OrderService from '../services/OrderService';
+import OrderList from './OrderList';
 
 class App extends Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class App extends Component {
   getOrders = () => {
     OrderService.getOrders()
       .then(orders => this.setState({ orders: orders }))
-      .catch(error => { });
+      .catch(error => { console.log(error); });
   }
 
   render() {
@@ -33,29 +34,6 @@ class App extends Component {
       </div>
     );
   }
-}
-
-let OrderList = (props) => {
-  return (
-    <ul>
-      <li>
-        <div>
-          <span>Name</span>
-          <span>Order</span>
-        </div>
-      </li>
-      {props.orders.map((order, index) => <li key={index}><OrderRow {...order} /></li>)}
-    </ul>
-  );
-}
-
-let OrderRow = (props) => {
-  return (
-    <div>
-      <span>{props.name}</span>
-      <span>{props.order}</span>
-    </div>
-  );
 }
 
 export default App;
