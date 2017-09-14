@@ -4,17 +4,11 @@ let orderService = {
   getOrders: getOrders
 }
 
-function getOrders() {
-  // return new Promise((resolve, reject) => {
-  //   let fakeOrders =
-  //     [
-  //       { name: "YaK", order: "Eggs" },
-  //       { name: "YaK", order: "Honey" },
-  //       { name: "Rita", order: "Honey" }
-  //     ];
+const apiUrl = "http://eggsandhoneywebapiinmemory.azurewebsites.net/api/v1/";
+const getOrdersUrl = `${apiUrl}orders`;
 
-  //   resolve(fakeOrders);
-  // });
+function getOrders() {
+  return axios.get(getOrdersUrl).then(result => result.data.items);
 }
 
 export default orderService;
