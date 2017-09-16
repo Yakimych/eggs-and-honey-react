@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
 import logo from '../logo.svg';
 import './App.css';
 
@@ -28,9 +29,12 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Eggs and Honey</h2>
         </div>
-        <div className="App-intro">
-          <OrderList orders={this.state.orders} />
-        </div>
+        <BrowserRouter>
+          <div className="main-content">
+            <Route path="/" exact component={(props) => (<OrderList {...props} orders={this.state.orders} />)} />
+            <Route path="/admin" component={(props) => (<h1><OrderList {...props} orders={this.state.orders} /></h1>)} />
+          </div>
+        </BrowserRouter>
       </div>
     );
   }
