@@ -1,14 +1,13 @@
-import axios from 'axios';
+import dataProviderFactory from './DataProviderFactory';
+
+const dataProvider = dataProviderFactory.getDataProvider();
 
 let orderService = {
   getOrders: getOrders
 }
 
-const apiUrl = "http://eggsandhoneywebapiinmemory.azurewebsites.net/api/v1/";
-const getOrdersUrl = `${apiUrl}orders`;
-
 function getOrders() {
-  return axios.get(getOrdersUrl).then(result => result.data.items);
+  return dataProvider.getOrders().then(result => result.items);
 }
 
 export default orderService;
