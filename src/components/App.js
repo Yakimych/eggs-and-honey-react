@@ -4,7 +4,7 @@ import logo from '../logo.svg';
 import './App.css';
 
 import OrderService from '../services/OrderService';
-import OrderList from './OrderList';
+import OrderListContainer from './OrderListContainer';
 
 class App extends Component {
   constructor(props) {
@@ -31,8 +31,8 @@ class App extends Component {
         </div>
         <BrowserRouter>
           <div className="main-content">
-            <Route path="/" exact component={(props) => (<OrderList {...props} orders={this.state.orders} />)} />
-            <Route path="/admin" component={(props) => (<h1><OrderList {...props} orders={this.state.orders} /></h1>)} />
+            <Route path="/" exact component={(props) => (<OrderListContainer {...props} orders={this.state.orders} />)} />
+            <Route path="/admin" component={(props) => (<h1><OrderListContainer {...props} orders={this.state.orders} /></h1>)} />
           </div>
         </BrowserRouter>
       </div>
