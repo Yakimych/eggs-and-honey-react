@@ -11,7 +11,13 @@ class FakeDataProvider {
     return new Promise((resolve, reject) => {
       resolve(fakeOrders);
     });
-  }
+  };
+
+  addOrder(name, order) {
+    return new Promise((resolve, reject) => {
+      resolve();
+    });
+  };
 }
 
 export default new FakeDataProvider();

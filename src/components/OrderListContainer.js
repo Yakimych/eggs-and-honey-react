@@ -6,7 +6,7 @@ let OrderListContainer = (props) => {
   return (
    <div>
      <OrderList orders={props.orders} />
-     <AddOrder />
+     <AddOrder onAddOrder={props.onAddOrder} />
    </div>
   );
 }
