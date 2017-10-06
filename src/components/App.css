@@ -27,3 +27,7 @@ li div {
   width: 300px;
   justify-content: space-around;
 }
+
+.active {
+  border: 1px solid red;
+}
