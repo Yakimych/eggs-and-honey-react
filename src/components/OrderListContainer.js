@@ -7,8 +7,7 @@ let OrderListContainer = (props) => {
   return (
    <div>
      <OrderList orders={props.orders} />
-     <AddOrder onAddOrder={props.onAddOrder} />
-     <ProductSelector products={["Eggs", "Honey"]} />
+     <AddOrder onAddOrder={props.onAddOrder} products={["Eggs", "Honey"]} />
    </div>
   );
 }

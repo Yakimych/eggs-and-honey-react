@@ -16,11 +16,10 @@ class ProductSelector extends React.Component {
 
   activeChanged = (event, index) => {
     let isChecked = event.target.checked;
-    if (isChecked === true) {
-      this.setState({ activeProductIndex: index });
-    } else {
-      this.setState({ activeProductIndex: -1 });
-    }
+    let activeProductIndex = (isChecked === true ? index: -1);
+    
+    this.setState({ activeProductIndex: activeProductIndex });
+    this.props.onActiveChanged(activeProductIndex);
   }
 
   render() {
