@@ -11,7 +11,6 @@ class AddOrder extends React.Component {
     this.setState({ name: event.target.value });
   };
  
-  // TODO: Check for index -1
   getActiveProductName = () =>
     this.props.products[this.state.selectedIndex];
 
@@ -21,14 +20,19 @@ class AddOrder extends React.Component {
  
   activeProductChanged = (selectedIndex) => {
     this.setState({ selectedIndex: selectedIndex });
-    // TODO: Call the parent components callback function
+    this.props.activeProductChanged(selectedIndex);
   }
   
+  canAddOrder = () => {
+    // TODO: Don't allow the same order to be added twice
+    return !!this.state.name && this.state.selectedIndex !== -1;
+  }
+
   render() {
   return (
     <div>
       <input type="text" onChange={this.nameChanged} />
-      <button onClick={this.addOrder}>Add</button>
+      <button onClick={this.addOrder} disabled={!this.canAddOrder()}>Add</button>
       <ProductSelector
         products={this.props.products}
         onActiveChanged={this.activeProductChanged} />

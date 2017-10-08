@@ -1,8 +1,8 @@
 const fakeOrders = {
   "items": [
-    { name: "FakeName1", order: "FakeOrder1" },
-    { name: "FakeName2", order: "FakeOrder2" },
-    { name: "FakeName3", order: "FakeOrder3" }
+    { name: "FakeName1", order: "Eggs" },
+    { name: "FakeName2", order: "Eggs" },
+    { name: "FakeName3", order: "Honey" }
   ]
 };
 
