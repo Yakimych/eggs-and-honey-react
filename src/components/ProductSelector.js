@@ -3,31 +3,27 @@ import React from 'react';
 class ProductSelector extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { activeProductIndex: -1 };
+    this.state = { activeProductName: "" };
   }
 
-  productIsActive = (index) => {
-    return index === this.state.activeProductIndex;
-  }
+  productIsActive = (name) => name === this.state.activeProductName;
   
-  getActiveProductClass = (index) => {
-    return this.productIsActive(index) ? "active" : "";
-  }
+  getActiveProductClass = (index) => this.productIsActive(index) ? "active" : "";
 
-  activeChanged = (event, index) => {
+  activeChanged = (event, name) => {
     let isChecked = event.target.checked;
-    let activeProductIndex = (isChecked === true ? index: -1);
+    let activeProductName = (isChecked === true ? name: "");
     
-    this.setState({ activeProductIndex: activeProductIndex });
-    this.props.onActiveChanged(activeProductIndex);
+    this.setState({ activeProductName: activeProductName });
+    this.props.onActiveChanged(activeProductName);
   }
 
   render() {
     return (
       <div>
         {this.props.products.map((product, index) => (
-          <label className={"btn btn-default " + (this.productIsActive(index) ? "active" : "")} key={index}>
-          <input type="checkbox" checked={this.productIsActive(index)} onChange={(event) => this.activeChanged(event, index)} />
+          <label className={"btn btn-default " + (this.productIsActive(product) ? "active" : "")} key={index}>
+          <input type="checkbox" checked={this.productIsActive(product)} onChange={(event) => this.activeChanged(event, product)} />
             {product}
           </label>
         ))}

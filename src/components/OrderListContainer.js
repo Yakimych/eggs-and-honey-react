@@ -22,7 +22,7 @@ class OrderListContainer extends React.Component {
     OrderService.getOrders()
       .then(orders => {
         this.orders = orders;
-        this.updateFilteredOrders(-1);
+        this.updateFilteredOrders();
       })
       .catch(error => { console.log(error); });
   }
@@ -30,18 +30,13 @@ class OrderListContainer extends React.Component {
  onAddOrder = (name, order) => {
     OrderService.addOrder(name, order).then(() => {
       this.orders = this.orders.concat({ name: name, order: order}); 
-      this.updateFilteredOrders(this.state.productTypes.indexOf(order));
+      this.updateFilteredOrders(order);
     });
   }
  
-  updateFilteredOrders = (productIndex) => {
-    const selectedProductName = this.state.productTypes[productIndex];
-    
+  updateFilteredOrders = (productName) => {
     let filteredOrders =
-      productIndex === -1 ?
-        this.orders :
-        this.orders.filter((order) =>
-          order.order === selectedProductName);
+      !productName ? this.orders : this.orders.filter((order) => order.order === productName);
 
     this.setState({ filteredOrders: filteredOrders });
   }
