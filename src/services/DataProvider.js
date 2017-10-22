@@ -9,8 +9,7 @@ class DataProvider {
     return axios.get(getOrdersUrl).then(result => result.data);
   }
   addOrder(name, order) {
-    // TODO: Post the data correctly
-    return axios.post(addOrderUrl).then(result => result.data.id);
+    return axios.post(addOrderUrl, { name: name, order: order }).then(result => result.data.id);
   }
 }
 
