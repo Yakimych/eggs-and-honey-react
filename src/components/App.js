@@ -3,6 +3,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import './App.css';
 
 import OrderListContainer from './OrderListContainer';
+import AdminPage from './AdminPage';
 
 class App extends Component {
   render() {
@@ -14,7 +15,7 @@ class App extends Component {
         <BrowserRouter>
           <div className="main-content">
             <Route path="/" exact component={(props) => (<OrderListContainer {...props} />)} />
-            <Route path="/admin" component={(props) => (<h1><OrderListContainer {...props} /></h1>)} />
+            <Route path="/admin" component={(props) => (<AdminPage {...props} />)} />
           </div>
         </BrowserRouter>
       </div>

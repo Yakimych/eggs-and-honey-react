@@ -5,17 +5,18 @@ import OrderService from '../services/OrderService';
 
 class OrderListContainer extends React.Component {
   orders = [];
+  productTypes = [];
 
   constructor(props) {
     super(props);
     this.state = {
-      filteredOrders: [],
-      productTypes: [ "Eggs", "Honey" ]
+      filteredOrders: []
     };
   }
 
   componentDidMount() {
     this.getOrders();
+    this.getProductTypes();
   }
 
   getOrders = () => {
@@ -24,6 +25,12 @@ class OrderListContainer extends React.Component {
         this.orders = orders;
         this.updateFilteredOrders();
       })
+      .catch(error => { console.log(error); });
+  }
+
+  getProductTypes = () => {
+    OrderService.getProductTypes()
+      .then(productTypes => this.productTypes = productTypes)
       .catch(error => { console.log(error); });
   }
 
@@ -47,7 +54,7 @@ class OrderListContainer extends React.Component {
        <OrderList orders={this.state.filteredOrders} />
        <AddOrder
          onAddOrder={this.onAddOrder}
-         products={this.state.productTypes}
+         products={this.productTypes}
          activeProductChanged={this.updateFilteredOrders}
        />
      </div>
