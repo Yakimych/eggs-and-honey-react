@@ -4,12 +4,17 @@ const dataProvider = dataProviderFactory.getDataProvider();
 
 let orderService = {
   getOrders: getOrders,
+  getOrderHistory: getOrderHistory,
   getProductTypes: getProductTypes,
   addOrder: addOrder
 }
 
 function getOrders() {
   return dataProvider.getOrders().then(result => result.items);
+}
+
+function getOrderHistory() {
+  return dataProvider.getResolvedOrders().then(result => result.items);
 }
 
 function getProductTypes() {

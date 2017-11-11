@@ -8,6 +8,7 @@ let OrderList = (props) => {
         <div>
           <span>Name</span>
           <span>Order</span>
+          {/* Add DatePlaced and DateResolved dynamically */}
         </div>
       </li>
       {props.orders.map((order, index) => <li key={index}><OrderRow {...order} /></li>)}
