@@ -1,12 +1,17 @@
 import React from 'react';
 
-let OrderRow = (props) => {
+const OrderRow = (props) => {
   return (
     <div>
-      <span>{props.name}</span>
-      <span>{props.order}</span>
+      <SpanOrEmpty value={props.name} />
+      <SpanOrEmpty value={props.order} />
+      <SpanOrEmpty value={props.datePlaced} />
+      <SpanOrEmpty value={props.dateResolved} />
     </div>
   );
 }
+
+const SpanOrEmpty = (props) =>
+  props.value ? (<span>{props.value}</span>) : null;
 
 export default OrderRow;
