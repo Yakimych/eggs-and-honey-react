@@ -1,6 +1,6 @@
 import React from 'react';
-import AdminOrderListContainer from './AdminOrderListContainer'
-import OrderHistory from './OrderHistory'
+import AdminOrderListContainer from './AdminOrderListContainer';
+import OrderHistory from './OrderHistory';
 
 const AdminPage = () => (
   <div>

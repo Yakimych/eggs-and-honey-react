@@ -9,7 +9,7 @@ const OrderRow = (props) => {
       <SpanOrEmpty value={props.dateResolved} />
     </div>
   );
-}
+};
 
 const SpanOrEmpty = (props) =>
   props.value ? (<span>{props.value}</span>) : null;

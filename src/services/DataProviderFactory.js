@@ -12,6 +12,6 @@ function getDataProvider() {
   }
 
   return DataProvider;
-};
+}
 
 export default dataProviderFactory;

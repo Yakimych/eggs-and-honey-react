@@ -4,12 +4,12 @@ import ProductSelector from './ProductSelector';
 class AddOrder extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { name: "", product: "" };
+    this.state = { name: '', product: '' };
   }
 
   nameChanged = (event) => {
     this.setState({ name: event.target.value });
-  };
+  }
  
   addOrder = () => {
     this.props.onAddOrder(this.state.name, this.state.product);
@@ -36,6 +36,6 @@ class AddOrder extends React.Component {
       </div>
     );
   }
-};
+}
 
 export default AddOrder;

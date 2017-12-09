@@ -21,17 +21,17 @@ class OrderListContainer extends React.Component {
 
   getOrders = () => {
     OrderService.getOrders()
-      .then(orders => {
+      .then((orders) => {
         this.orders = orders;
         this.updateFilteredOrders();
       })
-      .catch(error => { console.log(error); });
+      .catch((error) => { console.log(error); });
   }
 
   getProductTypes = () => {
     OrderService.getProductTypes()
-      .then(productTypes => this.productTypes = productTypes)
-      .catch(error => { console.log(error); });
+      .then((productTypes) => this.productTypes = productTypes)
+      .catch((error) => { console.log(error); });
   }
  
   updateFilteredOrders = (selectedProductType) => {
@@ -43,12 +43,12 @@ class OrderListContainer extends React.Component {
 
   render() {
     return (
-     <div>
+      <div>
         <ProductSelector
           products={this.productTypes}
           onActiveChanged={this.updateFilteredOrders} />
-       <OrderList orders={this.state.filteredOrders} />
-     </div>
+        <OrderList orders={this.state.filteredOrders} />
+      </div>
     );
   }
 }

@@ -14,12 +14,12 @@ class OrderHistory extends React.Component {
 
   getOrderHistory = () => {
     OrderService.getOrderHistory()
-      .then(resolvedOrders => {
+      .then((resolvedOrders) => {
         this.resolvedOrders = resolvedOrders;
         this.setState({ resolvedOrders: resolvedOrders });
         console.log(this.resolvedOrders);
       })
-      .catch(error => { console.log(error); });
+      .catch((error) => { console.log(error); });
   }
 
   render() {

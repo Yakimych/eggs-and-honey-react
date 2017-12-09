@@ -14,6 +14,6 @@ let OrderList = (props) => {
       {props.orders.map((order, index) => <li key={index}><OrderRow {...order} /></li>)}
     </ul>
   );
-}
+};
 
 export default OrderList;
