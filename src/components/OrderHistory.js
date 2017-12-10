@@ -22,9 +22,17 @@ class OrderHistory extends React.Component {
       .catch((error) => { console.log(error); });
   }
 
+  unresolveOrder = (resolvedOrderId) => {
+    console.log(`Call service unresolveOrder with orderId ${resolvedOrderId}`);
+    // TODO: Move the order from unresolved back to resolved if the service responds with OK
+  }
+
   render() {
-    // Send in the array of columns (including Resolve/Unresolve button)?
-    return <OrderList columns={this.props.columns} orders={this.state.resolvedOrders} />;
+    return <OrderList
+      columns={this.props.columns}
+      actionLabel={'Unresolve'}
+      action={this.unresolveOrder}
+      orders={this.state.resolvedOrders} />;
   }
 }
 

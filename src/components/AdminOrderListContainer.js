@@ -3,7 +3,7 @@ import OrderList from './OrderList';
 import ProductSelector from './ProductSelector';
 import OrderService from '../services/OrderService';
 
-class OrderListContainer extends React.Component {
+class AdminOrderListContainer extends React.Component {
   orders = [];
   productTypes = [];
 
@@ -41,16 +41,25 @@ class OrderListContainer extends React.Component {
     this.setState({ filteredOrders: filteredOrders });
   }
 
+  resolveOrder = (orderId) => {
+    console.log(`Call service -> resolveOrder with orderId: ${orderId}`);
+    // TODO: Move order from active to resolved if the service responds with OK
+  }
+
   render() {
     return (
       <div>
         <ProductSelector
           products={this.productTypes}
           onActiveChanged={this.updateFilteredOrders} />
-        <OrderList columns={this.props.columns} orders={this.state.filteredOrders} />
+        <OrderList
+          action={this.resolveOrder}
+          actionLabel={'Resolve'}
+          columns={this.props.columns}
+          orders={this.state.filteredOrders} />
       </div>
     );
   }
 }
 
-export default OrderListContainer;
+export default AdminOrderListContainer;
