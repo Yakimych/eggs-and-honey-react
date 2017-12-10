@@ -2,7 +2,7 @@ import React from 'react';
 
 const OrderRow = (props) => {
   return (
-    <div>
+    <div className='order-row'>
       <SpanOrEmpty value={props.name} />
       <SpanOrEmpty value={props.order} />
       <SpanOrEmpty value={props.datePlaced} />

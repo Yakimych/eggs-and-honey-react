@@ -23,10 +23,10 @@ ul {
   list-style-type: none;
 }
 
-li div {
+.order-row {
   display: flex;
-  width: 500px;
   justify-content: space-around;
+  width: 500px;
 }
 
 .active {
