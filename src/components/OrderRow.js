@@ -3,10 +3,7 @@ import React from 'react';
 const OrderRow = (props) => {
   return (
     <div className='order-row'>
-      <SpanOrEmpty value={props.name} />
-      <SpanOrEmpty value={props.order} />
-      <SpanOrEmpty value={props.datePlaced} />
-      <SpanOrEmpty value={props.dateResolved} />
+      {props.columnNames.map((colname, index) => <SpanOrEmpty key={index} value={props[colname]} />)}
     </div>
   );
 };

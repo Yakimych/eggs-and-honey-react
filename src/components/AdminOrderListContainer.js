@@ -47,7 +47,7 @@ class OrderListContainer extends React.Component {
         <ProductSelector
           products={this.productTypes}
           onActiveChanged={this.updateFilteredOrders} />
-        <OrderList orders={this.state.filteredOrders} />
+        <OrderList columns={this.props.columns} orders={this.state.filteredOrders} />
       </div>
     );
   }

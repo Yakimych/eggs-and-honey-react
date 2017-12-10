@@ -7,6 +7,10 @@ import AdminPage from './AdminPage';
 
 class App extends Component {
   render() {
+    let columns = [
+      { name: 'name', label: 'Name' },
+      { name: 'order', label: 'Order' }
+    ];
     return (
       <div className="App">
         <div className="App-header">
@@ -14,7 +18,7 @@ class App extends Component {
         </div>
         <BrowserRouter>
           <div className="main-content">
-            <Route path="/" exact component={(props) => (<OrderListContainer {...props} />)} />
+            <Route path="/" exact component={(props) => (<OrderListContainer columns={columns} {...props} />)} />
             <Route path="/admin" component={(props) => (<AdminPage {...props} />)} />
           </div>
         </BrowserRouter>

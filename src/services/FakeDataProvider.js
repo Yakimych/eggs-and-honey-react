@@ -1,8 +1,8 @@
 const fakeOrders = {
   'items': [
-    { name: 'FakeName1', order: 'Eggs' },
-    { name: 'FakeName2', order: 'Eggs' },
-    { name: 'FakeName3', order: 'Honey' }
+    { name: 'FakeName1', order: 'Eggs', datePlaced: '2015-01-01' },
+    { name: 'FakeName2', order: 'Eggs', datePlaced: '2015-01-02' },
+    { name: 'FakeName3', order: 'Honey', datePlaced: '2015-01-03' }
   ]
 };
 

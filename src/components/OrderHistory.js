@@ -24,7 +24,7 @@ class OrderHistory extends React.Component {
 
   render() {
     // Send in the array of columns (including Resolve/Unresolve button)?
-    return <OrderList orders={this.state.resolvedOrders} />;
+    return <OrderList columns={this.props.columns} orders={this.state.resolvedOrders} />;
   }
 }
 

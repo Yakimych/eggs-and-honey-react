@@ -5,11 +5,9 @@ let OrderList = (props) => {
   return (
     <div>
       <div className='order-row'>
-        <span>Name</span>
-        <span>Order</span>
-        {/* Add DatePlaced and DateResolved dynamically */}
+        {props.columns.map((column, index) => <span key={index}>{column.label}</span>)}
       </div>
-      {props.orders.map((order, index) => <OrderRow key={index} {...order} />)}
+      {props.orders.map((order, index) => <OrderRow key={index} columnNames={props.columns.map((col) => col.name)} {...order} />)}
     </div>
   );
 };
