@@ -23,8 +23,9 @@ class OrderHistory extends React.Component {
   }
 
   unresolveOrder = (resolvedOrderId) => {
-    console.log(`Call service unresolveOrder with orderId ${resolvedOrderId}`);
+    OrderService.unresolveOrder(resolvedOrderId);
     // TODO: Move the order from unresolved back to resolved if the service responds with OK
+    // Or reload both lists from the server?
   }
 
   render() {

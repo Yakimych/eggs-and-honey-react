@@ -42,8 +42,9 @@ class AdminOrderListContainer extends React.Component {
   }
 
   resolveOrder = (orderId) => {
-    console.log(`Call service -> resolveOrder with orderId: ${orderId}`);
+    OrderService.resolveOrder(orderId);
     // TODO: Move order from active to resolved if the service responds with OK
+    // Or yet again - reload both lists
   }
 
   render() {
