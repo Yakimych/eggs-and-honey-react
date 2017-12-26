@@ -19,13 +19,13 @@ const fakeResolvedOrders = {
 class FakeDataProvider {
   getOrders() {
     return new Promise((resolve) => {
-      resolve(fakeOrders);
+      resolve({ items: fakeOrders.items.slice() });
     });
   }
 
   getResolvedOrders() {
     return new Promise((resolve) => {
-      resolve(fakeResolvedOrders);
+      resolve({ items: fakeResolvedOrders.items.slice() });
     });
   }
 

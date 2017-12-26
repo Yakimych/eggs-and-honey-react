@@ -5,27 +5,10 @@ import OrderService from '../services/OrderService';
 class OrderHistory extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { resolvedOrders: [] };
-  }
-
-  componentDidMount() {
-    this.getOrderHistory();
-  }
-
-  getOrderHistory = () => {
-    OrderService.getOrderHistory()
-      .then((resolvedOrders) => {
-        this.resolvedOrders = resolvedOrders;
-        this.setState({ resolvedOrders: resolvedOrders });
-        console.log(this.resolvedOrders);
-      })
-      .catch((error) => { console.log(error); });
   }
 
   unresolveOrder = (resolvedOrderId) => {
-    OrderService.unresolveOrder(resolvedOrderId);
-    // TODO: Move the order from unresolved back to resolved if the service responds with OK
-    // Or reload both lists from the server?
+    OrderService.unresolveOrder(resolvedOrderId).then((order) => this.props.onOrderUnresolved(order));
   }
 
   render() {
@@ -33,7 +16,7 @@ class OrderHistory extends React.Component {
       columns={this.props.columns}
       actionLabel={'Unresolve'}
       action={this.unresolveOrder}
-      orders={this.state.resolvedOrders} />;
+      orders={this.props.resolvedOrders} />;
   }
 }
 

@@ -15,17 +15,12 @@ class AdminOrderListContainer extends React.Component {
   }
 
   componentDidMount() {
-    this.getOrders();
     this.getProductTypes();
   }
 
-  getOrders = () => {
-    OrderService.getOrders()
-      .then((orders) => {
-        this.orders = orders;
-        this.updateFilteredOrders();
-      })
-      .catch((error) => { console.log(error); });
+  componentWillReceiveProps(nextProps) {
+    this.orders = nextProps.orders;
+    this.updateFilteredOrders();
   }
 
   getProductTypes = () => {
@@ -42,9 +37,7 @@ class AdminOrderListContainer extends React.Component {
   }
 
   resolveOrder = (orderId) => {
-    OrderService.resolveOrder(orderId);
-    // TODO: Move order from active to resolved if the service responds with OK
-    // Or yet again - reload both lists
+    OrderService.resolveOrder(orderId).then((order) => this.props.onOrderResolved(order));
   }
 
   render() {
