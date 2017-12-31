@@ -8,7 +8,10 @@ class OrderHistory extends React.Component {
   }
 
   unresolveOrder = (resolvedOrderId) => {
-    OrderService.unresolveOrder(resolvedOrderId).then((order) => this.props.onOrderUnresolved(order));
+    OrderService
+      .unresolveOrder(resolvedOrderId)
+      .then((order) => this.props.onOrderUnresolved(order))
+      .catch((error) => console.log(error));
   }
 
   render() {

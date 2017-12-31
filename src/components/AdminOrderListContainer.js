@@ -24,9 +24,10 @@ class AdminOrderListContainer extends React.Component {
   }
 
   getProductTypes = () => {
-    OrderService.getProductTypes()
+    OrderService
+      .getProductTypes()
       .then((productTypes) => this.productTypes = productTypes)
-      .catch((error) => { console.log(error); });
+      .catch((error) => console.log(error));
   }
  
   updateFilteredOrders = (selectedProductType) => {
