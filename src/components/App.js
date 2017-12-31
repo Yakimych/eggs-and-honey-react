@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import './App.css';
 
-import OrderListContainer from './OrderListContainer';
-import AdminPage from './AdminPage';
+import AdminPage from './Pages/AdminPage';
+import UserPage from './Pages/UserPage';
 
 class App extends Component {
   render() {
@@ -18,7 +18,7 @@ class App extends Component {
         </div>
         <BrowserRouter>
           <div className="main-content">
-            <Route path="/" exact component={(props) => (<OrderListContainer columns={columns} {...props} />)} />
+            <Route path="/" exact component={(props) => (<UserPage columns={columns} {...props} />)} />
             <Route path="/admin" component={(props) => (<AdminPage {...props} />)} />
           </div>
         </BrowserRouter>

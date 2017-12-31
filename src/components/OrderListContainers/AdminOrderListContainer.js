@@ -1,7 +1,7 @@
 import React from 'react';
-import OrderList from './OrderList';
-import ProductSelector from './ProductSelector';
-import OrderService from '../services/OrderService';
+import OrderList from '../OrderList/OrderList';
+import ProductSelector from '../ProductSelector/ProductSelector';
+import OrderService from '../../services/OrderService';
 
 class AdminOrderListContainer extends React.Component {
   orders = [];

@@ -1,7 +1,7 @@
 import React from 'react';
-import AdminOrderListContainer from './AdminOrderListContainer';
-import OrderService from '../services/OrderService';
-import OrderHistory from './OrderHistory';
+import AdminOrderListContainer from '../OrderListContainers/AdminOrderListContainer';
+import OrderService from '../../services/OrderService';
+import OrderHistory from '../OrderListContainers/OrderHistoryContainer';
 
 let columns = [
   // TODO: Make name and order hardcoded in the list?

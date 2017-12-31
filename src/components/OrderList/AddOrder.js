@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductSelector from './ProductSelector';
+import ProductSelector from '../ProductSelector/ProductSelector';
 
 class AddOrder extends React.Component {
   constructor(props) {

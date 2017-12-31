@@ -1,8 +1,8 @@
 import React from 'react';
-import OrderList from './OrderList';
-import OrderService from '../services/OrderService';
+import OrderList from '../OrderList/OrderList';
+import OrderService from '../../services/OrderService';
 
-class OrderHistory extends React.Component {
+class OrderHistoryContainer extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -23,4 +23,4 @@ class OrderHistory extends React.Component {
   }
 }
 
-export default OrderHistory;
+export default OrderHistoryContainer;
