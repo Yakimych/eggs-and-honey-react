@@ -2,39 +2,32 @@ import dataProviderFactory from './DataProviderFactory';
 
 const dataProvider = dataProviderFactory.getDataProvider();
 
-let orderService = {
-  getOrders: getOrders,
-  getOrderHistory: getOrderHistory,
-  getProductTypes: getProductTypes,
-  addOrder: addOrder,
-  resolveOrder: resolveOrder,
-  unresolveOrder: unresolveOrder
-};
+class OrderService {
+  getOrders() {
+    return dataProvider.getOrders().then((result) => result.items);
+  }
 
-function getOrders() {
-  return dataProvider.getOrders().then((result) => result.items);
+  getOrderHistory() {
+    return dataProvider.getResolvedOrders().then((result) => result.items);
+  }
+
+  getProductTypes() {
+    return new Promise((resolve) => {
+      resolve([ 'Eggs', 'Honey' ]);
+    });
+  }
+
+  addOrder(name, order) {
+    return dataProvider.addOrder(name, order);
+  }
+
+  resolveOrder(orderId) {
+    return dataProvider.resolveOrder(orderId);
+  }
+
+  unresolveOrder(resolvedOrderId) {
+    return dataProvider.unresolveOrder(resolvedOrderId);
+  }
 }
 
-function getOrderHistory() {
-  return dataProvider.getResolvedOrders().then((result) => result.items);
-}
-
-function getProductTypes() {
-  return new Promise((resolve) => {
-    resolve([ 'Eggs', 'Honey' ]);
-  });
-}
-
-function addOrder(name, order) {
-  return dataProvider.addOrder(name, order);
-}
-
-function resolveOrder(orderId) {
-  return dataProvider.resolveOrder(orderId);
-}
-
-function unresolveOrder(resolvedOrderId) {
-  return dataProvider.unresolveOrder(resolvedOrderId);
-}
-
-export default orderService;
+export default new OrderService();

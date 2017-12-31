@@ -32,7 +32,7 @@ class FakeDataProvider {
   addOrder(name, order) {
     return new Promise((resolve) => {
       console.log(`FakeDataProvider: adding order: ${name} ${order}`);
-      fakeOrders.push({ id: currentOrderId++, name: name, order: order, datePlaced: new Date().toISOString().substring(0, 10) });
+      fakeOrders.items.push({ id: currentOrderId++, name: name, order: order, datePlaced: new Date().toISOString().substring(0, 10) });
       resolve();
     });
   }
