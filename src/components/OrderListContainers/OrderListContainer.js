@@ -35,12 +35,20 @@ class OrderListContainer extends React.Component {
   }
 
   onAddOrder = (name, order) => {
-    OrderService.addOrder(name, order).then(() => {
-      this.orders = this.orders.concat({ name: name, order: order}); 
-      this.updateFilteredOrders(order);
-    });
+    let existingOrders = this.orders.filter((o) => o.name == name && o.order == order);
+    if (existingOrders.length > 0) {
+      alert('Order already exists!');
+    }
+    else {
+      OrderService.addOrder(name, order)
+        .then(() => {
+          this.orders = this.orders.concat({ name: name, order: order}); 
+          this.updateFilteredOrders(order);
+        })
+        .catch(() => alert('Failed to add order, please refresh the page and try again'));
+    }
   }
- 
+
   updateFilteredOrders = (productName) => {
     let filteredOrders =
       !productName ? this.orders : this.orders.filter((order) => order.order === productName);
