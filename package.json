@@ -13,9 +13,13 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "flow": "flow"
   },
   "devDependencies": {
-    "babel-eslint": "^8.0.3"
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.0.3",
+    "babel-preset-flow": "^6.23.0",
+    "flow-bin": "^0.72.0"
   }
 }
