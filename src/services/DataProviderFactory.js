@@ -1,3 +1,4 @@
+// @flow
 import config from '../config';
 import DataProvider from './DataProvider';
 import FakeDataProvider from './FakeDataProvider';
