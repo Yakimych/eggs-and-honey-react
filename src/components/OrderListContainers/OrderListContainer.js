@@ -1,13 +1,24 @@
+// @flow
+import type { Order } from '../../types/OrderTypes';
+import type { OrderListColumn } from '../../types/OrderListTypes';
 import React from 'react';
 import OrderList from '../OrderList/OrderList';
 import AddOrder from '../OrderList/AddOrder';
 import OrderService from '../../services/OrderService';
 
-class OrderListContainer extends React.Component {
+type OrderListContainerProps = {
+  columns: Array<OrderListColumn>
+}
+
+type OrderListContainerState = {
+  filteredOrders: Array<Order>
+}
+
+class OrderListContainer extends React.Component<OrderListContainerProps, OrderListContainerState> {
   orders = [];
   productTypes = [];
 
-  constructor(props) {
+  constructor(props: OrderListContainerProps) {
     super(props);
     this.state = {
       filteredOrders: []
@@ -34,22 +45,23 @@ class OrderListContainer extends React.Component {
       .catch((error) => { console.log(error); });
   }
 
-  onAddOrder = (name, order) => {
+  onAddOrder = (name: string, order: string) => {
     let existingOrders = this.orders.filter((o) => o.name == name && o.order == order);
     if (existingOrders.length > 0) {
       alert('Order already exists!');
     }
     else {
+      // TODO: id, datePlaced are invalid
       OrderService.addOrder(name, order)
         .then(() => {
-          this.orders = this.orders.concat({ name: name, order: order}); 
+          this.orders = this.orders.concat({ id: 0, name: name, order: order, datePlaced: ''}); 
           this.updateFilteredOrders(order);
         })
         .catch(() => alert('Failed to add order, please refresh the page and try again'));
     }
   }
 
-  updateFilteredOrders = (productName) => {
+  updateFilteredOrders = (productName: ?string) => {
     let filteredOrders =
       !productName ? this.orders : this.orders.filter((order) => order.order === productName);
 
@@ -59,7 +71,7 @@ class OrderListContainer extends React.Component {
   render() {
     return (
       <div>
-        <OrderList columns={this.props.columns} orders={this.state.filteredOrders} />
+        <OrderList columns={this.props.columns} orders={this.state.filteredOrders} action={() => {}} actionLabel={null} />
         <AddOrder
           onAddOrder={this.onAddOrder}
           products={this.productTypes}
