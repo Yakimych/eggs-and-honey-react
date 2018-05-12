@@ -1,13 +1,26 @@
+// @flow
+import type { Order } from '../../types/OrderTypes';
+import type { OrderListColumn } from '../../types/OrderListTypes';
 import React from 'react';
 import OrderList from '../OrderList/OrderList';
 import ProductSelector from '../ProductSelector/ProductSelector';
 import OrderService from '../../services/OrderService';
 
-class AdminOrderListContainer extends React.Component {
+type AdminOrderListProps = {
+  columns: Array<OrderListColumn>,
+  orders: Array<Order>,
+  onOrderResolved: (order: Order) => void
+}
+
+type AdminOrderListState = {
+  filteredOrders: Array<Order>
+}
+
+class AdminOrderListContainer extends React.Component<AdminOrderListProps, AdminOrderListState> {
   orders = [];
   productTypes = [];
 
-  constructor(props) {
+  constructor(props: AdminOrderListProps) {
     super(props);
     this.state = {
       filteredOrders: []
@@ -18,7 +31,7 @@ class AdminOrderListContainer extends React.Component {
     this.getProductTypes();
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps: AdminOrderListProps) {
     this.orders = nextProps.orders;
     this.updateFilteredOrders();
   }
@@ -30,14 +43,14 @@ class AdminOrderListContainer extends React.Component {
       .catch((error) => console.log(error));
   }
  
-  updateFilteredOrders = (selectedProductType) => {
+  updateFilteredOrders = (selectedProductType: ?string) => {
     let filteredOrders =
       !selectedProductType ? this.orders : this.orders.filter((order) => order.order === selectedProductType);
 
     this.setState({ filteredOrders: filteredOrders });
   }
 
-  resolveOrder = (orderId) => {
+  resolveOrder = (orderId: number) => {
     OrderService.resolveOrder(orderId).then((order) => this.props.onOrderResolved(order));
   }
 

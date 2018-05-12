@@ -20,6 +20,7 @@
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.0.3",
     "babel-preset-flow": "^6.23.0",
+    "eslint-plugin-flowtype": "^2.46.3",
     "flow-bin": "^0.72.0"
   }
 }
