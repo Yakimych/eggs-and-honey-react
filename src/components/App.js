@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import './App.css';
@@ -5,7 +6,7 @@ import './App.css';
 import AdminPage from './Pages/AdminPage';
 import UserPage from './Pages/UserPage';
 
-class App extends Component {
+class App extends Component<any> {
   render() {
     let columns = [
       { name: 'name', label: 'Name' },

@@ -1,16 +1,28 @@
+// @flow
 import React from 'react';
 
-class ProductSelector extends React.Component {
-  constructor(props) {
+type ProductSelectorProps = {
+  products: Array<string>,
+  onActiveChanged: (activeProductName: string) => void
+}
+
+type ProductSelectorState = {
+  activeProductName: string
+}
+
+class ProductSelector extends React.Component<ProductSelectorProps, ProductSelectorState> {
+  constructor(props: ProductSelectorProps) {
     super(props);
     this.state = { activeProductName: '' };
   }
 
-  productIsActive = (name) => name === this.state.activeProductName;
+  productIsActive = (name: string) => name === this.state.activeProductName;
   
-  getActiveProductClass = (index) => this.productIsActive(index) ? 'active' : '';
+  // TODO: Check why it's called index. Looks like it should be name
+  // TODO: Can this be removed?
+  getActiveProductClass = (index: string) => this.productIsActive(index) ? 'active' : '';
 
-  activeChanged = (event, name) => {
+  activeChanged = (event: SyntheticInputEvent<EventTarget>, name: string) => {
     let isChecked = event.target.checked;
     let activeProductName = (isChecked === true ? name: '');
     

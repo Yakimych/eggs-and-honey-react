@@ -1,18 +1,9 @@
 // @flow
-import type { Order } from '../../types/OrderTypes';
-import type { OrderListColumn } from '../../types/OrderListTypes';
+import type { OrderListContainerProps, OrderListContainerState } from '../../types/OrderListContainerTypes';
 import React from 'react';
 import OrderList from '../OrderList/OrderList';
 import AddOrder from '../OrderList/AddOrder';
 import OrderService from '../../services/OrderService';
-
-type OrderListContainerProps = {
-  columns: Array<OrderListColumn>
-}
-
-type OrderListContainerState = {
-  filteredOrders: Array<Order>
-}
 
 class OrderListContainer extends React.Component<OrderListContainerProps, OrderListContainerState> {
   orders = [];
