@@ -1,15 +1,8 @@
 // @flow
-import type { Order, ResolvedOrder } from '../../types/OrderTypes';
-import type { OrderListColumn } from '../../types/OrderListTypes';
+import type { OrderHistoryProps } from '../../types/OrderHistoryTypes';
 import React from 'react';
 import OrderList from '../OrderList/OrderList';
 import OrderService from '../../services/OrderService';
-
-type OrderHistoryProps = {
-  columns: Array<OrderListColumn>,
-  resolvedOrders: Array<ResolvedOrder>,
-  onOrderUnresolved: (order: Order) => void
-}
 
 class OrderHistoryContainer extends React.Component<OrderHistoryProps> {
   constructor(props: OrderHistoryProps) {

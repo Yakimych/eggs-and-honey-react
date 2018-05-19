@@ -1,5 +1,4 @@
 // @flow
-
 type AddOrderProps = {
   products: Array<string>,
   onAddOrder: (name: string, product: string) => void,

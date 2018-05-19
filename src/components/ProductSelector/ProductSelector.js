@@ -17,10 +17,6 @@ class ProductSelector extends React.Component<ProductSelectorProps, ProductSelec
   }
 
   productIsActive = (name: string) => name === this.state.activeProductName;
-  
-  // TODO: Check why it's called index. Looks like it should be name
-  // TODO: Can this be removed?
-  getActiveProductClass = (index: string) => this.productIsActive(index) ? 'active' : '';
 
   activeChanged = (event: SyntheticInputEvent<EventTarget>, name: string) => {
     let isChecked = event.target.checked;

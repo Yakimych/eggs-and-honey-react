@@ -1,14 +1,9 @@
 // @flow
-import type { Order, ResolvedOrder } from '../../types/OrderTypes';
+import type { AdminPageState } from '../../types/AdminPageTypes';
 import React from 'react';
 import AdminOrderListContainer from '../OrderListContainers/AdminOrderListContainer';
 import OrderService from '../../services/OrderService';
 import OrderHistory from '../OrderListContainers/OrderHistoryContainer';
-
-type AdminPageState = {
-  orders: Array<Order>,
-  resolvedOrders: Array<ResolvedOrder>
-}
 
 let columns = [
   // TODO: Make name and order hardcoded in the list?
