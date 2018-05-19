@@ -1,3 +1,5 @@
+// @flow
+import type { AdminPageState } from '../../types/AdminPageTypes';
 import React from 'react';
 import AdminOrderListContainer from '../OrderListContainers/AdminOrderListContainer';
 import OrderService from '../../services/OrderService';
@@ -12,7 +14,7 @@ let columns = [
 
 let historyColumns = columns.concat([ { name: 'dateResolved', label: 'Date Resolved' } ]);
 
-class AdminPage extends React.Component {
+class AdminPage extends React.Component<any, AdminPageState> {
   state = { orders: [], resolvedOrders: [] };
 
   componentDidMount() {

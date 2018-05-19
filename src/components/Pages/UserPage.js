@@ -1,7 +1,9 @@
+// @flow
+import type { OrderListContainerProps } from '../../types/OrderListContainerTypes';
 import React from 'react';
 import OrderListContainer from '../OrderListContainers/OrderListContainer';
 
-class UserPage extends React.Component {
+class UserPage extends React.Component<OrderListContainerProps> {
   render() {
     return (
       <div>

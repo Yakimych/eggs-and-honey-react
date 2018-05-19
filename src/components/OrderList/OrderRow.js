@@ -1,15 +1,20 @@
+// @flow
+import type { OrderRowProps } from '../../Types/OrderRowProps';
 import React from 'react';
 
-const OrderRow = (props) => {
+const OrderRow = (props: OrderRowProps) => {
   return (
     <div className='order-row'>
       {props.actionLabel && <button onClick={props.action}>{props.actionLabel}</button> }
-      {props.columnNames.map((colname, index) => <SpanOrEmpty key={index} value={props.order[colname]} />)}
+      {props.columnNames.map((colname: string, index: number) => <SpanOrEmpty key={index} value={props.order[colname]} />)}
     </div>
   );
 };
 
-const SpanOrEmpty = (props) =>
+type SpanOrEmptyProps = {
+  value: string
+}
+const SpanOrEmpty = (props: SpanOrEmptyProps) =>
   props.value ? (<span>{props.value}</span>) : null;
 
 export default OrderRow;

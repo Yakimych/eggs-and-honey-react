@@ -1,16 +1,24 @@
+// @flow
 import React from 'react';
 
-class ProductSelector extends React.Component {
-  constructor(props) {
+type ProductSelectorProps = {
+  products: Array<string>,
+  onActiveChanged: (activeProductName: string) => void
+}
+
+type ProductSelectorState = {
+  activeProductName: string
+}
+
+class ProductSelector extends React.Component<ProductSelectorProps, ProductSelectorState> {
+  constructor(props: ProductSelectorProps) {
     super(props);
     this.state = { activeProductName: '' };
   }
 
-  productIsActive = (name) => name === this.state.activeProductName;
-  
-  getActiveProductClass = (index) => this.productIsActive(index) ? 'active' : '';
+  productIsActive = (name: string) => name === this.state.activeProductName;
 
-  activeChanged = (event, name) => {
+  activeChanged = (event: SyntheticInputEvent<EventTarget>, name: string) => {
     let isChecked = event.target.checked;
     let activeProductName = (isChecked === true ? name: '');
     

@@ -1,3 +1,4 @@
+// @flow
 import dataProviderFactory from './DataProviderFactory';
 
 const dataProvider = dataProviderFactory.getDataProvider();
@@ -11,21 +12,21 @@ class OrderService {
     return dataProvider.getResolvedOrders().then((result) => result.items);
   }
 
-  getProductTypes() {
+  getProductTypes(): Promise<Array<string>> {
     return new Promise((resolve) => {
       resolve([ 'Eggs', 'Honey' ]);
     });
   }
 
-  addOrder(name, order) {
+  addOrder(name: string, order: string) {
     return dataProvider.addOrder(name, order);
   }
 
-  resolveOrder(orderId) {
+  resolveOrder(orderId: number) {
     return dataProvider.resolveOrder(orderId);
   }
 
-  unresolveOrder(resolvedOrderId) {
+  unresolveOrder(resolvedOrderId: number) {
     return dataProvider.unresolveOrder(resolvedOrderId);
   }
 }
