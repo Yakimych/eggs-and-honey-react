@@ -16,14 +16,14 @@ class DataProvider {
   getResolvedOrders(): Promise<ResolvedOrderItems> {
     return axios.get(getResolvedOrdersUrl).then((result: ApiResult<ResolvedOrderItems>) => result.data);
   }
-  addOrder(name: string, order: string): Promise<ResultWithId> {
+  addOrder(name: string, order: string): Promise<number> {
     return axios.post(addOrderUrl, { name: name, order: order }).then((result: ApiResult<ResultWithId>) => result.data.id);
   }
   resolveOrder(orderId: number): Promise<ResolvedOrder> {
-    return axios.post(resolveOrderUrl, { id: orderId }).then((result: ApiResult<ResultWithId>) => result.data);
+    return axios.post(resolveOrderUrl, { id: orderId }).then((result: ApiResult<ResolvedOrder>) => result.data);
   }
   unresolveOrder(orderId: number): Promise<Order> {
-    return axios.post(unresolveOrderUrl, { id: orderId }).then((result: ApiResult<ResultWithId>) => result.data);
+    return axios.post(unresolveOrderUrl, { id: orderId }).then((result: ApiResult<Order>) => result.data);
   }
 }
 
