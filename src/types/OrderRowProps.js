@@ -1,10 +1,11 @@
 // @flow
+import type { DisplayOrder } from './OrderTypes';
+
 type OrderRowProps = {
+  // TODO: Maybe?
   action: () => void,
   actionLabel: ?string,
-  columnNames: Array<string>,
-  // TODO: This is actually rather silly, since we're "indexing" it in OrderRow
-  order: Object
+  displayOrder: DisplayOrder
 }
 
 export type { OrderRowProps };

@@ -1,8 +1,11 @@
+// @flow
+import type { DisplayOrder } from '../../types/OrderTypes';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import OrderRow from './OrderRow';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<OrderRow name="TestName" order="TestOrder" />, div);
+  const displayOrder: DisplayOrder = { id: 1, name: 'TestName', order: 'TestOrder' };
+  ReactDOM.render(<OrderRow displayOrder={displayOrder} action={() => {}} actionLabel={''}/>, div);
 });

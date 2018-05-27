@@ -1,4 +1,5 @@
 // @flow
+import type { DisplayOrder } from './OrderTypes';
 type OrderListColumn = {
   name: string,
   label: string
@@ -7,8 +8,7 @@ type OrderListColumn = {
 type OrderListProps = {
   action: (id: number) => void,
   actionLabel: ?string,
-  // TODO: This was a bit a JS Hack. Leaving as Object for now
-  orders: Array<Object>,
+  displayOrders: Array<DisplayOrder>,
   columns: Array<OrderListColumn>
 }
 

@@ -1,4 +1,5 @@
 // @flow
+import type { Order, DisplayOrder } from '../../types/OrderTypes';
 import type { OrderListContainerProps, OrderListContainerState } from '../../types/OrderListContainerTypes';
 import React from 'react';
 import OrderList from '../OrderList/OrderList';
@@ -59,10 +60,13 @@ class OrderListContainer extends React.Component<OrderListContainerProps, OrderL
     this.setState({ filteredOrders: filteredOrders });
   }
 
+  toDisplayOrder = (order: Order): DisplayOrder =>
+    ({ id: order.id, name: order.name, order: order.order });
+
   render() {
     return (
       <div>
-        <OrderList columns={this.props.columns} orders={this.state.filteredOrders} action={() => {}} actionLabel={null} />
+        <OrderList columns={this.props.columns} displayOrders={this.state.filteredOrders.map(this.toDisplayOrder)} action={() => {}} actionLabel={null} />
         <AddOrder
           onAddOrder={this.onAddOrder}
           products={this.productTypes}

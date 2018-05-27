@@ -1,4 +1,15 @@
 // @flow
+type DisplayOrder = {
+  // TODO: maybe?
+  id: number,
+  name: string,
+  // TODO: Enum?
+  order: string,
+  // TODO: Date
+  datePlaced?: string,
+  dateResolved?: string,
+}
+
 type Order = {
   id: number,
   name: string,
@@ -33,4 +44,4 @@ type ApiResult<T> = {
   data: T
 }
 
-export type { Order, ResolvedOrder, OrderItems, ResolvedOrderItems, ApiResult, ResultWithId };
+export type { Order, ResolvedOrder, DisplayOrder, OrderItems, ResolvedOrderItems, ApiResult, ResultWithId };
