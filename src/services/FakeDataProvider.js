@@ -1,5 +1,6 @@
 // @flow
-import type { Order, ResolvedOrder, OrderItems, ResolvedOrderItems, ResultWithId } from '../Types/OrderTypes';
+import type { Order, ResolvedOrder, ApiOrder, ApiResolvedOrder, OrderItems, ResolvedOrderItems } from '../Types/OrderTypes';
+import { toOrder, toResolvedOrder } from './ApiOrderMapping';
 let currentOrderId = 1;
 const fakeOrders: OrderItems = {
   items: [
@@ -19,28 +20,25 @@ const fakeResolvedOrders: ResolvedOrderItems = {
 };
 
 class FakeDataProvider {
-  getOrders(): Promise<OrderItems> {
-    return new Promise((resolve) => {
-      resolve({ items: fakeOrders.items.slice() });
+  getOrders = (): Promise<Array<Order>> =>
+    new Promise((resolve) => {
+      resolve(fakeOrders.items.slice().map(toOrder));
     });
-  }
 
-  getResolvedOrders(): Promise<ResolvedOrderItems> {
-    return new Promise((resolve) => {
-      resolve({ items: fakeResolvedOrders.items.slice() });
+  getResolvedOrders = (): Promise<Array<ResolvedOrder>> =>
+    new Promise((resolve) => {
+      resolve(fakeResolvedOrders.items.slice().map(toResolvedOrder));
     });
-  }
 
-  addOrder(name: string, order: string): Promise<ResultWithId> {
-    return new Promise((resolve) => {
+  addOrder = (name: string, order: string): Promise<number> =>
+    new Promise((resolve) => {
       console.log(`FakeDataProvider: adding order: ${name} ${order}`);
-      fakeOrders.items.push({ id: currentOrderId++, name: name, order: order, datePlaced: new Date().toISOString().substring(0, 10) });
-      resolve({ id: currentOrderId });
+      fakeOrders.items.push({ id: currentOrderId++, name: name, order: order, datePlaced: '' });
+      resolve(currentOrderId);
     });
-  }
 
-  resolveOrder(orderId: number): Promise<ResolvedOrder> {
-    return new Promise((resolve, reject) => {
+  resolveOrder = (orderId: number): Promise<ResolvedOrder> =>
+    new Promise((resolve, reject) => {
       console.log(`FakeDataProvider: resolving order: ${orderId}`);
       let orderToResolve = fakeOrders.items.find((order) => order.id === orderId);
       if (!orderToResolve) {
@@ -48,22 +46,21 @@ class FakeDataProvider {
       }
       else {
         fakeOrders.items = fakeOrders.items.filter((order) => order.id !== orderId);
-        let newResolvedOrder: ResolvedOrder = 
+        let newResolvedOrder: ApiResolvedOrder = 
           {
             id: currentResolvedOrderId++,
             name: orderToResolve.name,
             order: orderToResolve.order,
             datePlaced: orderToResolve.datePlaced,
-            dateResolved: new Date().toISOString().substring(0, 10)
+            dateResolved: ''
           };
         fakeResolvedOrders.items.push(newResolvedOrder);
-        resolve(newResolvedOrder);
+        resolve(toResolvedOrder(newResolvedOrder));
       }
     });
-  }
 
-  unresolveOrder(resolvedOrderId: number): Promise<Order> {
-    return new Promise((resolve, reject) => {
+  unresolveOrder = (resolvedOrderId: number): Promise<Order> =>
+    new Promise((resolve, reject) => {
       console.log(`FakeDataProvider: unresolving order: ${resolvedOrderId}`);
       let orderToUnresolve = fakeResolvedOrders.items.find((order) => order.id === resolvedOrderId);
       if (!orderToUnresolve) {
@@ -71,7 +68,7 @@ class FakeDataProvider {
       }
       else {
         fakeResolvedOrders.items = fakeResolvedOrders.items.filter((order) => order.id !== resolvedOrderId);
-        let newUnresolvedOrder: Order = 
+        let newUnresolvedOrder: ApiOrder = 
           {
             id: currentOrderId++,
             name: orderToUnresolve.name,
@@ -79,10 +76,9 @@ class FakeDataProvider {
             datePlaced: orderToUnresolve.datePlaced
           };
         fakeOrders.items.push(newUnresolvedOrder);
-        resolve(newUnresolvedOrder);
+        resolve(toOrder(newUnresolvedOrder));
       }
     });
-  }
 }
 
 export default new FakeDataProvider();

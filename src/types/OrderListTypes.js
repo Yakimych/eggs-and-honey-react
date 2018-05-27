@@ -7,7 +7,7 @@ type OrderListColumn = {
 
 type OrderListProps = {
   action: (id: number) => void,
-  actionLabel: ?string,
+  actionLabel?: string,
   displayOrders: Array<DisplayOrder>,
   columns: Array<OrderListColumn>
 }

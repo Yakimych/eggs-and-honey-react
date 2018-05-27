@@ -17,11 +17,10 @@ class AdminOrderListContainer extends React.Component<AdminOrderListProps, Admin
     };
   }
 
-  componentDidMount() {
+  componentDidMount = () =>
     this.getProductTypes();
-  }
 
-  componentWillReceiveProps(nextProps: AdminOrderListProps) {
+  componentWillReceiveProps = (nextProps: AdminOrderListProps) => {
     this.orders = nextProps.orders;
     this.updateFilteredOrders();
   }
@@ -45,7 +44,7 @@ class AdminOrderListContainer extends React.Component<AdminOrderListProps, Admin
   }
 
   toDisplayOrder = (order: Order): DisplayOrder =>
-    ({ id: order.id, name: order.name, order: order.order, datePlaced: order.datePlaced });
+    ({ id: order.id, name: order.name, order: order.order, datePlaced: order.datePlaced.toLocaleDateString('sv') });
 
   render() {
     return (

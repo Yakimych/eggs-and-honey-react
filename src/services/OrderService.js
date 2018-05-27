@@ -1,34 +1,29 @@
 // @flow
+import type { Order, ResolvedOrder } from '../types/OrderTypes';
 import dataProviderFactory from './DataProviderFactory';
 
 const dataProvider = dataProviderFactory.getDataProvider();
 
 class OrderService {
-  getOrders() {
-    return dataProvider.getOrders().then((result) => result.items);
-  }
+  getOrders = (): Promise<Array<Order>> =>
+    dataProvider.getOrders();
 
-  getOrderHistory() {
-    return dataProvider.getResolvedOrders().then((result) => result.items);
-  }
+  getOrderHistory = (): Promise<Array<ResolvedOrder>> => 
+    dataProvider.getResolvedOrders();
 
-  getProductTypes(): Promise<Array<string>> {
-    return new Promise((resolve) => {
+  getProductTypes = (): Promise<Array<string>> =>
+    new Promise((resolve) => {
       resolve([ 'Eggs', 'Honey' ]);
     });
-  }
 
-  addOrder(name: string, order: string) {
-    return dataProvider.addOrder(name, order);
-  }
+  addOrder = (name: string, order: string) =>
+    dataProvider.addOrder(name, order);
 
-  resolveOrder(orderId: number) {
-    return dataProvider.resolveOrder(orderId);
-  }
+  resolveOrder = (orderId: number) =>
+    dataProvider.resolveOrder(orderId);
 
-  unresolveOrder(resolvedOrderId: number) {
-    return dataProvider.unresolveOrder(resolvedOrderId);
-  }
+  unresolveOrder = (resolvedOrderId: number) =>
+    dataProvider.unresolveOrder(resolvedOrderId);
 }
 
 export default new OrderService();

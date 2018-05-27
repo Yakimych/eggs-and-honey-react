@@ -7,13 +7,13 @@ import AddOrder from '../OrderList/AddOrder';
 import OrderService from '../../services/OrderService';
 
 class OrderListContainer extends React.Component<OrderListContainerProps, OrderListContainerState> {
-  orders = [];
-  productTypes = [];
+  orders: Array<DisplayOrder> = [];
 
   constructor(props: OrderListContainerProps) {
     super(props);
     this.state = {
-      filteredOrders: []
+      filteredOrders: [],
+      productTypes: []
     };
   }
 
@@ -25,7 +25,7 @@ class OrderListContainer extends React.Component<OrderListContainerProps, OrderL
   getOrders = () => {
     OrderService.getOrders()
       .then((orders) => {
-        this.orders = orders;
+        this.orders = orders.map(this.toDisplayOrder);
         this.updateFilteredOrders();
       })
       .catch((error) => { console.log(error); });
@@ -33,7 +33,7 @@ class OrderListContainer extends React.Component<OrderListContainerProps, OrderL
 
   getProductTypes = () => {
     OrderService.getProductTypes()
-      .then((productTypes) => this.productTypes = productTypes)
+      .then((productTypes) => this.setState({ productTypes: productTypes }))
       .catch((error) => { console.log(error); });
   }
 
@@ -43,10 +43,9 @@ class OrderListContainer extends React.Component<OrderListContainerProps, OrderL
       alert('Order already exists!');
     }
     else {
-      // TODO: id, datePlaced are invalid
       OrderService.addOrder(name, order)
-        .then(() => {
-          this.orders = this.orders.concat({ id: 0, name: name, order: order, datePlaced: ''}); 
+        .then((addedOrderId: number) => {
+          this.orders = this.orders.concat({ id: addedOrderId, name: name, order: order }); 
           this.updateFilteredOrders(order);
         })
         .catch(() => alert('Failed to add order, please refresh the page and try again'));
@@ -66,10 +65,10 @@ class OrderListContainer extends React.Component<OrderListContainerProps, OrderL
   render() {
     return (
       <div>
-        <OrderList columns={this.props.columns} displayOrders={this.state.filteredOrders.map(this.toDisplayOrder)} action={() => {}} actionLabel={null} />
+        <OrderList columns={this.props.columns} displayOrders={this.state.filteredOrders} action={() => {}} />
         <AddOrder
           onAddOrder={this.onAddOrder}
-          products={this.productTypes}
+          products={this.state.productTypes}
           activeProductChanged={this.updateFilteredOrders}
         />
       </div>
