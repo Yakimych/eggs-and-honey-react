@@ -5,10 +5,6 @@ import OrderList from '../OrderList/OrderList';
 import OrderService from '../../services/OrderService';
 
 class OrderHistoryContainer extends React.Component<OrderHistoryProps> {
-  constructor(props: OrderHistoryProps) {
-    super(props);
-  }
-
   unresolveOrder = (resolvedOrderId: number) => {
     OrderService
       .unresolveOrder(resolvedOrderId)

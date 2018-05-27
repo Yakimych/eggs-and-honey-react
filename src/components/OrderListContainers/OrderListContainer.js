@@ -37,7 +37,7 @@ class OrderListContainer extends React.Component<OrderListContainerProps, OrderL
   }
 
   onAddOrder = (name: string, order: string) => {
-    let existingOrders = this.orders.filter((o) => o.name == name && o.order == order);
+    let existingOrders = this.orders.filter((o) => o.name === name && o.order === order);
     if (existingOrders.length > 0) {
       alert('Order already exists!');
     }
