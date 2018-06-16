@@ -1,5 +1,4 @@
 .App {
-  text-align: center;
   font-size: 14px;
 }
 
@@ -22,13 +21,13 @@
 ul {
   list-style-type: none;
 }
-
+/* 
 .order-row {
   display: flex;
   justify-content: space-around;
   width: 500px;
-}
+} */
 
-.active {
+.customactive {
   border: 1px solid red;
 }

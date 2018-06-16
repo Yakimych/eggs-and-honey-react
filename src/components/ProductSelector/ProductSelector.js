@@ -19,20 +19,18 @@ class ProductSelector extends React.Component<ProductSelectorProps, ProductSelec
 
   productIsActive = (name: OrderType) => name === this.state.activeProductName;
 
-  activeChanged = (event: SyntheticInputEvent<EventTarget>, name: OrderType) => {
-    let isChecked = event.target.checked;
-    let activeProductName = (isChecked === true ? name: null);
-    
-    this.setState({ activeProductName: activeProductName });
-    this.props.onActiveChanged(activeProductName);
+  productTypeClicked = (name: OrderType) => {
+    this.setState((prevState) => ({ activeProductName: prevState.activeProductName === name ? null : name }),
+      () => this.props.onActiveChanged(this.state.activeProductName)
+    );
   }
 
   render() {
     return (
       <div>
         {this.props.products.map((product, index) => (
-          <label className={'btn btn-default ' + (this.productIsActive(product) ? 'active' : '')} key={index}>
-            <input type="checkbox" checked={this.productIsActive(product)} onChange={(event) => this.activeChanged(event, product)} />
+          <label className={(this.productIsActive(product) ? 'customactive' : '')} key={index}>
+            <button type="button" checked={this.productIsActive(product)} onClick={() => this.productTypeClicked(product)} />
             {product}
           </label>
         ))}

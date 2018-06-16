@@ -7,9 +7,9 @@ import OrderRow from './OrderRow';
 let OrderList = (props: OrderListProps) => {
   return (
     <div>
-      <div className='order-row'>
-        {props.actionLabel && <span>{props.actionLabel}</span>}
-        {props.columns.map((column: OrderListColumn, index: number) => <span key={index}>{column.label}</span>)}
+      <div className='row'>
+        {props.actionLabel && <span className="col">{props.actionLabel}</span>}
+        {props.columns.map((column: OrderListColumn, index: number) => <span className="col" key={index}>{column.label}</span>)}
       </div>
       {props.displayOrders.map((order: DisplayOrder, index: number) =>
         <OrderRow
