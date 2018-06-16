@@ -1,5 +1,6 @@
 // @flow
-import type { AdminOrderListProps, AdminOrderListState } from '../../types/AdminORderListTypes';
+import type { Order, DisplayOrder } from '../../types/OrderTypes';
+import type { AdminOrderListProps, AdminOrderListState } from '../../types/AdminOrderListTypes';
 import React from 'react';
 import OrderList from '../OrderList/OrderList';
 import ProductSelector from '../ProductSelector/ProductSelector';
@@ -16,11 +17,10 @@ class AdminOrderListContainer extends React.Component<AdminOrderListProps, Admin
     };
   }
 
-  componentDidMount() {
+  componentDidMount = () =>
     this.getProductTypes();
-  }
 
-  componentWillReceiveProps(nextProps: AdminOrderListProps) {
+  componentWillReceiveProps = (nextProps: AdminOrderListProps) => {
     this.orders = nextProps.orders;
     this.updateFilteredOrders();
   }
@@ -43,6 +43,9 @@ class AdminOrderListContainer extends React.Component<AdminOrderListProps, Admin
     OrderService.resolveOrder(orderId).then((order) => this.props.onOrderResolved(order));
   }
 
+  toDisplayOrder = (order: Order): DisplayOrder =>
+    ({ id: order.id, name: order.name, order: order.order, datePlaced: order.datePlaced.toLocaleDateString('sv') });
+
   render() {
     return (
       <div>
@@ -53,7 +56,7 @@ class AdminOrderListContainer extends React.Component<AdminOrderListProps, Admin
           action={this.resolveOrder}
           actionLabel={'Resolve'}
           columns={this.props.columns}
-          orders={this.state.filteredOrders} />
+          displayOrders={this.state.filteredOrders.map(this.toDisplayOrder)} />
       </div>
     );
   }

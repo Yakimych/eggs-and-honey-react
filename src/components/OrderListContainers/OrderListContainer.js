@@ -1,4 +1,5 @@
 // @flow
+import type { Order, DisplayOrder, OrderType } from '../../types/OrderTypes';
 import type { OrderListContainerProps, OrderListContainerState } from '../../types/OrderListContainerTypes';
 import React from 'react';
 import OrderList from '../OrderList/OrderList';
@@ -6,13 +7,13 @@ import AddOrder from '../OrderList/AddOrder';
 import OrderService from '../../services/OrderService';
 
 class OrderListContainer extends React.Component<OrderListContainerProps, OrderListContainerState> {
-  orders = [];
-  productTypes = [];
+  orders: Array<DisplayOrder> = [];
 
   constructor(props: OrderListContainerProps) {
     super(props);
     this.state = {
-      filteredOrders: []
+      filteredOrders: [],
+      productTypes: []
     };
   }
 
@@ -24,7 +25,7 @@ class OrderListContainer extends React.Component<OrderListContainerProps, OrderL
   getOrders = () => {
     OrderService.getOrders()
       .then((orders) => {
-        this.orders = orders;
+        this.orders = orders.map(this.toDisplayOrder);
         this.updateFilteredOrders();
       })
       .catch((error) => { console.log(error); });
@@ -32,20 +33,19 @@ class OrderListContainer extends React.Component<OrderListContainerProps, OrderL
 
   getProductTypes = () => {
     OrderService.getProductTypes()
-      .then((productTypes) => this.productTypes = productTypes)
+      .then((productTypes) => this.setState({ productTypes: productTypes }))
       .catch((error) => { console.log(error); });
   }
 
-  onAddOrder = (name: string, order: string) => {
-    let existingOrders = this.orders.filter((o) => o.name == name && o.order == order);
+  onAddOrder = (name: string, order: OrderType) => {
+    let existingOrders = this.orders.filter((o) => o.name === name && o.order === order);
     if (existingOrders.length > 0) {
       alert('Order already exists!');
     }
     else {
-      // TODO: id, datePlaced are invalid
       OrderService.addOrder(name, order)
-        .then(() => {
-          this.orders = this.orders.concat({ id: 0, name: name, order: order, datePlaced: ''}); 
+        .then((addedOrderId: number) => {
+          this.orders = this.orders.concat({ id: addedOrderId, name: name, order: order }); 
           this.updateFilteredOrders(order);
         })
         .catch(() => alert('Failed to add order, please refresh the page and try again'));
@@ -59,13 +59,16 @@ class OrderListContainer extends React.Component<OrderListContainerProps, OrderL
     this.setState({ filteredOrders: filteredOrders });
   }
 
+  toDisplayOrder = (order: Order): DisplayOrder =>
+    ({ id: order.id, name: order.name, order: order.order });
+
   render() {
     return (
       <div>
-        <OrderList columns={this.props.columns} orders={this.state.filteredOrders} action={() => {}} actionLabel={null} />
+        <OrderList columns={this.props.columns} displayOrders={this.state.filteredOrders} />
         <AddOrder
           onAddOrder={this.onAddOrder}
-          products={this.productTypes}
+          products={this.state.productTypes}
           activeProductChanged={this.updateFilteredOrders}
         />
       </div>

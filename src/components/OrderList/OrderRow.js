@@ -6,14 +6,18 @@ const OrderRow = (props: OrderRowProps) => {
   return (
     <div className='order-row'>
       {props.actionLabel && <button onClick={props.action}>{props.actionLabel}</button> }
-      {props.columnNames.map((colname: string, index: number) => <SpanOrEmpty key={index} value={props.order[colname]} />)}
+      <SpanOrEmpty value={props.displayOrder.name} />
+      <SpanOrEmpty value={props.displayOrder.order} />
+      <SpanOrEmpty value={props.displayOrder.datePlaced} />
+      <SpanOrEmpty value={props.displayOrder.dateResolved} />
     </div>
   );
 };
 
 type SpanOrEmptyProps = {
-  value: string
+  value: ?string
 }
+
 const SpanOrEmpty = (props: SpanOrEmptyProps) =>
   props.value ? (<span>{props.value}</span>) : null;
 

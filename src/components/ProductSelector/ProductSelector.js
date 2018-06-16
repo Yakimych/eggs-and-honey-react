@@ -1,26 +1,27 @@
 // @flow
 import React from 'react';
+import type { OrderType } from '../../types/OrderTypes';
 
 type ProductSelectorProps = {
-  products: Array<string>,
-  onActiveChanged: (activeProductName: string) => void
+  products: Array<OrderType>,
+  onActiveChanged: (activeProductName: ?OrderType) => void
 }
 
 type ProductSelectorState = {
-  activeProductName: string
+  activeProductName: ?OrderType
 }
 
 class ProductSelector extends React.Component<ProductSelectorProps, ProductSelectorState> {
   constructor(props: ProductSelectorProps) {
     super(props);
-    this.state = { activeProductName: '' };
+    this.state = { activeProductName: null };
   }
 
-  productIsActive = (name: string) => name === this.state.activeProductName;
+  productIsActive = (name: OrderType) => name === this.state.activeProductName;
 
-  activeChanged = (event: SyntheticInputEvent<EventTarget>, name: string) => {
+  activeChanged = (event: SyntheticInputEvent<EventTarget>, name: OrderType) => {
     let isChecked = event.target.checked;
-    let activeProductName = (isChecked === true ? name: '');
+    let activeProductName = (isChecked === true ? name: null);
     
     this.setState({ activeProductName: activeProductName });
     this.props.onActiveChanged(activeProductName);

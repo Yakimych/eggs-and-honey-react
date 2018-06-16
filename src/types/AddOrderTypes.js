@@ -1,13 +1,15 @@
 // @flow
+import type { OrderType } from './OrderTypes.js';
+
 type AddOrderProps = {
-  products: Array<string>,
-  onAddOrder: (name: string, product: string) => void,
-  activeProductChanged: (name: string) => void
+  products: Array<OrderType>,
+  onAddOrder: (name: string, product: OrderType) => void,
+  activeProductChanged: (name: ?OrderType) => void
 }
 
 type AddOrderState = {
   name: string,
-  product: string
+  product: ?OrderType
 }
 
 export type { AddOrderProps, AddOrderState };
