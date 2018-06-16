@@ -1,5 +1,5 @@
 // @flow
-import type { Order, ResolvedOrder } from '../types/OrderTypes';
+import type { Order, ResolvedOrder, OrderType } from '../types/OrderTypes';
 import dataProviderFactory from './DataProviderFactory';
 
 const dataProvider = dataProviderFactory.getDataProvider();
@@ -11,7 +11,7 @@ class OrderService {
   getOrderHistory = (): Promise<Array<ResolvedOrder>> => 
     dataProvider.getResolvedOrders();
 
-  getProductTypes = (): Promise<Array<string>> =>
+  getProductTypes = (): Promise<Array<OrderType>> =>
     new Promise((resolve) => {
       resolve([ 'Eggs', 'Honey' ]);
     });

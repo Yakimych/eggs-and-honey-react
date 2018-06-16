@@ -1,5 +1,5 @@
 // @flow
-import type { Order, DisplayOrder } from '../../types/OrderTypes';
+import type { Order, DisplayOrder, OrderType } from '../../types/OrderTypes';
 import type { OrderListContainerProps, OrderListContainerState } from '../../types/OrderListContainerTypes';
 import React from 'react';
 import OrderList from '../OrderList/OrderList';
@@ -37,7 +37,7 @@ class OrderListContainer extends React.Component<OrderListContainerProps, OrderL
       .catch((error) => { console.log(error); });
   }
 
-  onAddOrder = (name: string, order: string) => {
+  onAddOrder = (name: string, order: OrderType) => {
     let existingOrders = this.orders.filter((o) => o.name === name && o.order === order);
     if (existingOrders.length > 0) {
       alert('Order already exists!');

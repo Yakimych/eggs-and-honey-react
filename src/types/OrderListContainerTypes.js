@@ -1,6 +1,6 @@
 // @flow
 import type { OrderListColumn } from './OrderListTypes';
-import type { DisplayOrder } from './OrderTypes';
+import type { DisplayOrder, OrderType } from './OrderTypes';
 
 type OrderListContainerProps = {
   columns: Array<OrderListColumn>
@@ -8,7 +8,7 @@ type OrderListContainerProps = {
 
 type OrderListContainerState = {
   filteredOrders: Array<DisplayOrder>,
-  productTypes: Array<string>
+  productTypes: Array<OrderType>
 }
 
 export type { OrderListContainerProps, OrderListContainerState };

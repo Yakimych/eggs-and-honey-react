@@ -6,6 +6,6 @@ import OrderRow from './OrderRow';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  const displayOrder: DisplayOrder = { id: 1, name: 'TestName', order: 'TestOrder' };
+  const displayOrder: DisplayOrder = { id: 1, name: 'TestName', order: 'Eggs' };
   ReactDOM.render(<OrderRow displayOrder={displayOrder} action={() => {}} actionLabel={''}/>, div);
 });
