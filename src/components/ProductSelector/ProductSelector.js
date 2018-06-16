@@ -28,12 +28,18 @@ class ProductSelector extends React.Component<ProductSelectorProps, ProductSelec
   render() {
     return (
       <div>
-        {this.props.products.map((product, index) => (
-          <label className={(this.productIsActive(product) ? 'customactive' : '')} key={index}>
-            <button type="button" checked={this.productIsActive(product)} onClick={() => this.productTypeClicked(product)} />
-            {product}
-          </label>
-        ))}
+        <div className="btn-group">
+          {this.props.products.map((product, index) => (
+            <button
+              key={index}
+              type="button"
+              className={`btn btn-${this.productIsActive(product) ? 'success' : 'light'}`}
+              onClick={() => this.productTypeClicked(product)}
+            >
+              {product}
+            </button>
+          ))}
+        </div>
       </div>
     );
   }
