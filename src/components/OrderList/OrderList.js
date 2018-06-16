@@ -8,8 +8,8 @@ let OrderList = (props: OrderListProps) => {
   return (
     <div>
       <div className='row'>
-        {props.actionLabel && <span className="col">{props.actionLabel}</span>}
-        {props.columns.map((column: OrderListColumn, index: number) => <span className="col" key={index}>{column.label}</span>)}
+        {props.actionLabel && <h4 className="col">{props.actionLabel}</h4>}
+        {props.columns.map((column: OrderListColumn, index: number) => <h6 className="col" key={index}>{column.label}</h6>)}
       </div>
       {props.displayOrders.map((order: DisplayOrder, index: number) =>
         <OrderRow
