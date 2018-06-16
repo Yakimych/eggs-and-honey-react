@@ -15,7 +15,7 @@ let OrderList = (props: OrderListProps) => {
         <OrderRow
           key={index}
           actionLabel={props.actionLabel}
-          action={() => props.action(order.id)}
+          action={() => props.action ? props.action(order.id): undefined}
           displayOrder={order} />)}
     </div>
   );

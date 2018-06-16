@@ -2,9 +2,8 @@
 import type { DisplayOrder } from './OrderTypes';
 
 type OrderRowProps = {
-  // TODO: Maybe?
-  action: () => void,
-  actionLabel: ?string,
+  action?: () => void,
+  actionLabel?: string,
   displayOrder: DisplayOrder
 }
 

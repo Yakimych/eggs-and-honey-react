@@ -65,7 +65,7 @@ class OrderListContainer extends React.Component<OrderListContainerProps, OrderL
   render() {
     return (
       <div>
-        <OrderList columns={this.props.columns} displayOrders={this.state.filteredOrders} action={() => {}} />
+        <OrderList columns={this.props.columns} displayOrders={this.state.filteredOrders} />
         <AddOrder
           onAddOrder={this.onAddOrder}
           products={this.state.productTypes}
