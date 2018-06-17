@@ -6,9 +6,9 @@ import OrderRow from './OrderRow';
 
 let OrderList = (props: OrderListProps) => {
   return (
-    <div>
-      <div className='row'>
-        {props.actionLabel && <h4 className="col">{props.actionLabel}</h4>}
+    <div className="mt-3 mb-3">
+      <div className="row">
+        {props.actionLabel && <h6 className="col">{props.actionLabel}</h6>}
         {props.columns.map((column: OrderListColumn, index: number) => <h6 className="col" key={index}>{column.label}</h6>)}
       </div>
       {props.displayOrders.map((order: DisplayOrder, index: number) =>

@@ -4,6 +4,7 @@ import React from 'react';
 import AdminOrderListContainer from '../OrderListContainers/AdminOrderListContainer';
 import OrderService from '../../services/OrderService';
 import OrderHistory from '../OrderListContainers/OrderHistoryContainer';
+import './AdminPage.css';
 
 let columns = [
   // TODO: Make name and order hardcoded in the list?
@@ -41,8 +42,8 @@ class AdminPage extends React.Component<any, AdminPageState> {
 
   render() {
     return (
-      <div>
-        <h1>Admin View</h1>
+      <div className="my-3 p-3 bg-white rounded box-shadow admin-page-container">
+        <h3>Admin View</h3>
         <AdminOrderListContainer
           columns={columns}
           orders={this.state.orders}

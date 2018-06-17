@@ -4,8 +4,15 @@ import React from 'react';
 
 const OrderRow = (props: OrderRowProps) => {
   return (
-    <div className='row'>
-      {props.actionLabel && <button onClick={props.action}>{props.actionLabel}</button> }
+    <div className="row">
+      {props.actionLabel &&
+        <span className="col">
+          <button
+            className="btn btn-primary btn-sm mb-1"
+            onClick={props.action}>
+            {props.actionLabel}
+          </button>
+        </span>}
       <SpanOrEmpty value={props.displayOrder.name} />
       <SpanOrEmpty value={props.displayOrder.order} />
       <SpanOrEmpty value={props.displayOrder.datePlaced} />
