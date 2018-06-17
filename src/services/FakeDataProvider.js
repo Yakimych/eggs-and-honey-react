@@ -1,5 +1,5 @@
 // @flow
-import type { Order, ResolvedOrder, ApiOrder, ApiResolvedOrder, OrderItems, ResolvedOrderItems } from '../Types/OrderTypes';
+import type { ProductType, Order, ResolvedOrder, ApiOrder, ApiResolvedOrder, OrderItems, ResolvedOrderItems } from '../Types/OrderTypes';
 import { toOrder, toResolvedOrder } from './ApiOrderMapping';
 let currentOrderId = 1;
 const fakeOrders: OrderItems = {
@@ -30,10 +30,10 @@ class FakeDataProvider {
       resolve(fakeResolvedOrders.items.slice().map(toResolvedOrder));
     });
 
-  addOrder = (name: string, order: string): Promise<number> =>
+  addOrder = (name: string, productType: ProductType): Promise<number> =>
     new Promise((resolve) => {
-      console.log(`FakeDataProvider: adding order: ${name} ${order}`);
-      fakeOrders.items.push({ id: currentOrderId++, name: name, order: order, datePlaced: '' });
+      console.log(`FakeDataProvider: adding order: ${name} ${productType}`);
+      fakeOrders.items.push({ id: currentOrderId++, name: name, order: productType, datePlaced: '' });
       resolve(currentOrderId);
     });
 

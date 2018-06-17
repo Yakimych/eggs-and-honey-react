@@ -1,22 +1,22 @@
 // @flow
 import type { AddOrderProps, AddOrderState } from '../../types/AddOrderTypes';
-import type { OrderType } from '../../types/OrderTypes';
+import type { ProductType } from '../../types/OrderTypes';
 import React from 'react';
 import ProductSelector from '../ProductSelector/ProductSelector';
 
 class AddOrder extends React.Component<AddOrderProps, AddOrderState> {
   constructor(props: AddOrderProps) {
     super(props);
-    this.state = { name: '', product: null };
+    this.state = { name: '', productType: null };
   }
 
   nameChanged = (event: SyntheticInputEvent<EventTarget>) => this.setState({ name: event.target.value });
 
-  canAddOrder = () => !!this.state.name && !!this.state.product;
+  canAddOrder = () => !!this.state.name && !!this.state.productType;
  
-  activeProductChanged = (selectedProduct: ?OrderType) => {
-    this.setState({ product: selectedProduct });
-    this.props.activeProductChanged(selectedProduct);
+  activeProductTypeChanged = (selectedProductType: ?ProductType) => {
+    this.setState({ productType: selectedProductType });
+    this.props.activeProductTypeChanged(selectedProductType);
   }
 
   render() {
@@ -25,15 +25,16 @@ class AddOrder extends React.Component<AddOrderProps, AddOrderState> {
         <input type="text" className="mr-1" onChange={this.nameChanged} />
         <button
           className="btn btn-primary btn-sm"
-          onClick={() => this.state.product != null
-            ? this.props.onAddOrder(this.state.name, this.state.product)
+          onClick={() => this.state.productType != null
+            ? this.props.onAddOrder(this.state.name, this.state.productType)
             : null}
           disabled={!this.canAddOrder()}>
             Add
         </button>
         <ProductSelector
-          products={this.props.products}
-          onActiveChanged={this.activeProductChanged} />
+          products={this.props.productTypes}
+          activeProductType={this.state.productType}
+          onActiveChanged={this.activeProductTypeChanged} />
       </div>
     );
   }

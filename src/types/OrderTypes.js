@@ -1,10 +1,10 @@
 // @flow
-type OrderType = "Eggs" | "Honey";
+type ProductType = "Eggs" | "Honey";
 
 type DisplayOrder = {
   id: number,
   name: string,
-  order: OrderType,
+  productType: ProductType,
   datePlaced?: string,
   dateResolved?: string,
 }
@@ -12,14 +12,14 @@ type DisplayOrder = {
 type Order = {
   id: number,
   name: string,
-  order: OrderType,
+  productType: ProductType,
   datePlaced: Date
 }
 
 type ResolvedOrder = {
   id: number,
   name: string,
-  order: OrderType,
+  productType: ProductType,
   datePlaced: Date,
   dateResolved: Date
 }
@@ -51,8 +51,14 @@ type ResultWithId = {
   id: number
 }
 
-type ApiResult<T> = {
-  data: T
-}
-
-export type { OrderType, Order, ResolvedOrder, DisplayOrder, OrderItems, ResolvedOrderItems, ApiOrder, ApiResolvedOrder, ApiResult, ResultWithId };
+export type {
+  ProductType,
+  Order,
+  ResolvedOrder,
+  DisplayOrder,
+  OrderItems,
+  ResolvedOrderItems,
+  ApiOrder,
+  ApiResolvedOrder,
+  ResultWithId
+};

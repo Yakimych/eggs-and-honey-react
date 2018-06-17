@@ -1,28 +1,15 @@
 // @flow
 import React from 'react';
-import type { OrderType } from '../../types/OrderTypes';
+import type { ProductType } from '../../types/OrderTypes';
+import type { ProductSelectorProps } from '../../types/ProductSelectorTypes';
 
-type ProductSelectorProps = {
-  products: Array<OrderType>,
-  onActiveChanged: (activeProductName: ?OrderType) => void
-}
+class ProductSelector extends React.Component<ProductSelectorProps> {
+  productTypeIsActive = (productType: ProductType) =>
+    productType === this.props.activeProductType;
 
-type ProductSelectorState = {
-  activeProductName: ?OrderType
-}
-
-class ProductSelector extends React.Component<ProductSelectorProps, ProductSelectorState> {
-  constructor(props: ProductSelectorProps) {
-    super(props);
-    this.state = { activeProductName: null };
-  }
-
-  productIsActive = (name: OrderType) => name === this.state.activeProductName;
-
-  productTypeClicked = (name: OrderType) => {
-    this.setState((prevState) => ({ activeProductName: prevState.activeProductName === name ? null : name }),
-      () => this.props.onActiveChanged(this.state.activeProductName)
-    );
+  productTypeClicked = (productType: ProductType) => {
+    const newProductType: ?ProductType = this.props.activeProductType === productType ? null : productType;
+    this.props.onActiveChanged(newProductType);
   }
 
   render() {
@@ -33,7 +20,7 @@ class ProductSelector extends React.Component<ProductSelectorProps, ProductSelec
             <button
               key={index}
               type="button"
-              className={`btn btn-${this.productIsActive(product) ? 'success' : 'light'}`}
+              className={`btn btn-${this.productTypeIsActive(product) ? 'success' : 'light'}`}
               onClick={() => this.productTypeClicked(product)}
             >
               {product}

@@ -14,7 +14,13 @@ class OrderHistoryContainer extends React.Component<OrderHistoryProps> {
   }
 
   toDisplayOrder = (order: ResolvedOrder): DisplayOrder =>
-    ({ id: order.id, name: order.name, order: order.order, datePlaced: order.datePlaced.toLocaleDateString('sv'), dateResolved: order.dateResolved.toLocaleDateString('sv') });
+    ({
+      id: order.id,
+      name: order.name,
+      productType: order.productType,
+      datePlaced: order.datePlaced.toLocaleDateString('sv'),
+      dateResolved: order.dateResolved.toLocaleDateString('sv')
+    });
 
   render() {
     return <OrderList

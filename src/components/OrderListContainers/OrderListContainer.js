@@ -1,5 +1,5 @@
 // @flow
-import type { Order, DisplayOrder, OrderType } from '../../types/OrderTypes';
+import type { Order, DisplayOrder, ProductType } from '../../types/OrderTypes';
 import type { OrderListContainerProps, OrderListContainerState } from '../../types/OrderListContainerTypes';
 import React from 'react';
 import OrderList from '../OrderList/OrderList';
@@ -33,34 +33,36 @@ class OrderListContainer extends React.Component<OrderListContainerProps, OrderL
 
   getProductTypes = () => {
     OrderService.getProductTypes()
-      .then((productTypes) => this.setState({ productTypes: productTypes }))
+      .then((productTypes) => this.setState({ productTypes }))
       .catch((error) => { console.log(error); });
   }
 
-  onAddOrder = (name: string, order: OrderType) => {
-    let existingOrders = this.orders.filter((o) => o.name === name && o.order === order);
+  onAddOrder = (name: string, productType: ProductType) => {
+    let existingOrders = this.orders.filter((o) => o.name === name && o.productType === productType);
     if (existingOrders.length > 0) {
       alert('Order already exists!');
     }
     else {
-      OrderService.addOrder(name, order)
+      OrderService.addOrder(name, productType)
         .then((addedOrderId: number) => {
-          this.orders = this.orders.concat({ id: addedOrderId, name: name, order: order }); 
-          this.updateFilteredOrders(order);
+          this.orders = this.orders.concat({ id: addedOrderId, name: name, productType: productType }); 
+          this.updateFilteredOrders(productType);
         })
         .catch(() => alert('Failed to add order, please refresh the page and try again'));
     }
   }
 
-  updateFilteredOrders = (productName: ?string) => {
+  updateFilteredOrders = (productTypeName: ?string) => {
     let filteredOrders =
-      !productName ? this.orders : this.orders.filter((order) => order.order === productName);
+      !productTypeName
+        ? this.orders
+        : this.orders.filter((order) => order.productType === productTypeName);
 
-    this.setState({ filteredOrders: filteredOrders });
+    this.setState({ filteredOrders });
   }
 
   toDisplayOrder = (order: Order): DisplayOrder =>
-    ({ id: order.id, name: order.name, order: order.order });
+    ({ id: order.id, name: order.name, productType: order.productType });
 
   render() {
     return (
@@ -68,8 +70,8 @@ class OrderListContainer extends React.Component<OrderListContainerProps, OrderL
         <OrderList columns={this.props.columns} displayOrders={this.state.filteredOrders} />
         <AddOrder
           onAddOrder={this.onAddOrder}
-          products={this.state.productTypes}
-          activeProductChanged={this.updateFilteredOrders}
+          productTypes={this.state.productTypes}
+          activeProductTypeChanged={this.updateFilteredOrders}
         />
       </div>
     );
