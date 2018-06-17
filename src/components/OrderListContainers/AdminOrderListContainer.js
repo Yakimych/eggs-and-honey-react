@@ -1,5 +1,5 @@
 // @flow
-import type { Order, DisplayOrder } from '../../types/OrderTypes';
+import type { ProductType, Order, DisplayOrder } from '../../types/OrderTypes';
 import type { AdminOrderListProps, AdminOrderListState } from '../../types/AdminOrderListTypes';
 import React from 'react';
 import OrderList from '../OrderList/OrderList';
@@ -13,7 +13,8 @@ class AdminOrderListContainer extends React.Component<AdminOrderListProps, Admin
   constructor(props: AdminOrderListProps) {
     super(props);
     this.state = {
-      filteredOrders: []
+      filteredOrders: [],
+      selectedProductType: null
     };
   }
 
@@ -22,7 +23,7 @@ class AdminOrderListContainer extends React.Component<AdminOrderListProps, Admin
 
   componentWillReceiveProps = (nextProps: AdminOrderListProps) => {
     this.orders = nextProps.orders;
-    this.updateFilteredOrders();
+    this.updateFilteredOrders(this.state.selectedProductType);
   }
 
   getProductTypes = () => {
@@ -32,13 +33,14 @@ class AdminOrderListContainer extends React.Component<AdminOrderListProps, Admin
       .catch((error) => console.log(error));
   }
  
-  updateFilteredOrders = (selectedProductType: ?string) => {
+  updateFilteredOrders = (selectedProductType: ?ProductType) => {
+    this.setState({ selectedProductType });
+
     let filteredOrders =
       !selectedProductType
         ? this.orders
         : this.orders.filter((order) => order.productType === selectedProductType);
-
-    this.setState({ filteredOrders: filteredOrders });
+    this.setState({ filteredOrders });
   }
 
   resolveOrder = (orderId: number) => {
@@ -58,6 +60,7 @@ class AdminOrderListContainer extends React.Component<AdminOrderListProps, Admin
       <div>
         <ProductSelector
           products={this.productTypes}
+          activeProductType={this.state.selectedProductType}
           onActiveChanged={this.updateFilteredOrders} />
         <OrderList
           action={this.resolveOrder}

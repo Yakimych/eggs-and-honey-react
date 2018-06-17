@@ -33,7 +33,7 @@ class OrderListContainer extends React.Component<OrderListContainerProps, OrderL
 
   getProductTypes = () => {
     OrderService.getProductTypes()
-      .then((productTypes) => this.setState({ productTypes: productTypes }))
+      .then((productTypes) => this.setState({ productTypes }))
       .catch((error) => { console.log(error); });
   }
 
@@ -54,9 +54,11 @@ class OrderListContainer extends React.Component<OrderListContainerProps, OrderL
 
   updateFilteredOrders = (productTypeName: ?string) => {
     let filteredOrders =
-      !productTypeName ? this.orders : this.orders.filter((order) => order.productType === productTypeName);
+      !productTypeName
+        ? this.orders
+        : this.orders.filter((order) => order.productType === productTypeName);
 
-    this.setState({ filteredOrders: filteredOrders });
+    this.setState({ filteredOrders });
   }
 
   toDisplayOrder = (order: Order): DisplayOrder =>

@@ -1,5 +1,5 @@
 // @flow
-import type { Order } from './OrderTypes';
+import type { ProductType, Order } from './OrderTypes';
 import type { OrderListColumn } from './OrderListTypes';
 
 type AdminOrderListProps = {
@@ -9,7 +9,8 @@ type AdminOrderListProps = {
 }
 
 type AdminOrderListState = {
-  filteredOrders: Array<Order>
+  filteredOrders: Array<Order>,
+  selectedProductType: ?ProductType
 }
 
 export type { AdminOrderListProps, AdminOrderListState };

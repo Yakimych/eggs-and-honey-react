@@ -1,22 +1,15 @@
 // @flow
 import React from 'react';
 import type { ProductType } from '../../types/OrderTypes';
-import type { ProductSelectorProps, ProductSelectorState } from '../../types/ProductSelectorTypes';
+import type { ProductSelectorProps } from '../../types/ProductSelectorTypes';
 
-class ProductSelector extends React.Component<ProductSelectorProps, ProductSelectorState> {
-  constructor(props: ProductSelectorProps) {
-    super(props);
-    this.state = { activeProductType: null };
-  }
-
+class ProductSelector extends React.Component<ProductSelectorProps> {
   productTypeIsActive = (productType: ProductType) =>
-    productType === this.state.activeProductType;
+    productType === this.props.activeProductType;
 
-  productTypeClicked = (name: ProductType) => {
-    this.setState(
-      (prevState) => ({ activeProductType: prevState.activeProductType === name ? null : name }),
-      () => this.props.onActiveChanged(this.state.activeProductType)
-    );
+  productTypeClicked = (productType: ProductType) => {
+    const newProductType: ?ProductType = this.props.activeProductType === productType ? null : productType;
+    this.props.onActiveChanged(newProductType);
   }
 
   render() {
