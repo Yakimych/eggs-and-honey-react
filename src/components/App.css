@@ -1,11 +1,10 @@
 .App {
-  text-align: center;
   font-size: 14px;
 }
 
 .App-header {
   background-color: #222;
-  height: 50px;
+  height: 70px;
   padding: 20px;
   color: white;
 }
@@ -19,16 +18,6 @@
   to { transform: rotate(360deg); }
 }
 
-ul {
-  list-style-type: none;
-}
-
-.order-row {
-  display: flex;
-  justify-content: space-around;
-  width: 500px;
-}
-
-.active {
-  border: 1px solid red;
+.box-shadow {
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, .05);
 }

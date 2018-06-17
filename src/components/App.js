@@ -13,12 +13,12 @@ class App extends Component<any> {
       { name: 'order', label: 'Order' }
     ];
     return (
-      <div className="App">
+      <div className="App bg-light">
         <div className="App-header">
           <h2>Eggs and Honey</h2>
         </div>
         <BrowserRouter>
-          <div className="main-content">
+          <div className="main-content container">
             <Route path="/" exact component={(props) => (<UserPage columns={columns} {...props} />)} />
             <Route path="/admin" component={(props) => (<AdminPage {...props} />)} />
           </div>

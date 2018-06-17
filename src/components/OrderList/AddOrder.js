@@ -21,9 +21,10 @@ class AddOrder extends React.Component<AddOrderProps, AddOrderState> {
 
   render() {
     return (
-      <div>
-        <input type="text" onChange={this.nameChanged} />
+      <div className="mt-3">
+        <input type="text" className="mr-1" onChange={this.nameChanged} />
         <button
+          className="btn btn-primary btn-sm"
           onClick={() => this.state.product != null
             ? this.props.onAddOrder(this.state.name, this.state.product)
             : null}
