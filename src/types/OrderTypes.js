@@ -51,8 +51,4 @@ type ResultWithId = {
   id: number
 }
 
-type ApiResult<T> = {
-  data: T
-}
-
-export type { OrderType, Order, ResolvedOrder, DisplayOrder, OrderItems, ResolvedOrderItems, ApiOrder, ApiResolvedOrder, ApiResult, ResultWithId };
+export type { OrderType, Order, ResolvedOrder, DisplayOrder, OrderItems, ResolvedOrderItems, ApiOrder, ApiResolvedOrder, ResultWithId };
