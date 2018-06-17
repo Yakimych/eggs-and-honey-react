@@ -34,7 +34,9 @@ class AdminOrderListContainer extends React.Component<AdminOrderListProps, Admin
  
   updateFilteredOrders = (selectedProductType: ?string) => {
     let filteredOrders =
-      !selectedProductType ? this.orders : this.orders.filter((order) => order.order === selectedProductType);
+      !selectedProductType
+        ? this.orders
+        : this.orders.filter((order) => order.productType === selectedProductType);
 
     this.setState({ filteredOrders: filteredOrders });
   }
@@ -44,7 +46,12 @@ class AdminOrderListContainer extends React.Component<AdminOrderListProps, Admin
   }
 
   toDisplayOrder = (order: Order): DisplayOrder =>
-    ({ id: order.id, name: order.name, order: order.order, datePlaced: order.datePlaced.toLocaleDateString('sv') });
+    ({
+      id: order.id,
+      name: order.name,
+      productType: order.productType,
+      datePlaced: order.datePlaced.toLocaleDateString('sv')
+    });
 
   render() {
     return (

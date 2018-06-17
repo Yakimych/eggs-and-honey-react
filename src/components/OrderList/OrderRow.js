@@ -14,7 +14,7 @@ const OrderRow = (props: OrderRowProps) => {
           </button>
         </span>}
       <SpanOrEmpty value={props.displayOrder.name} />
-      <SpanOrEmpty value={props.displayOrder.order} />
+      <SpanOrEmpty value={props.displayOrder.productType} />
       <SpanOrEmpty value={props.displayOrder.datePlaced} />
       <SpanOrEmpty value={props.displayOrder.dateResolved} />
     </div>
