@@ -5,6 +5,7 @@ import React from 'react';
 import OrderList from '../OrderList/OrderList';
 import AddOrder from '../OrderList/AddOrder';
 import OrderService from '../../services/OrderService';
+import PropTypes from 'prop-types';
 
 class OrderListContainer extends React.Component<OrderListContainerProps, OrderListContainerState> {
   orders: Array<DisplayOrder> = [];
@@ -77,5 +78,9 @@ class OrderListContainer extends React.Component<OrderListContainerProps, OrderL
     );
   }
 }
+
+OrderListContainer.propTypes = {
+  columns: PropTypes.array.isRequired
+};
 
 export default OrderListContainer;

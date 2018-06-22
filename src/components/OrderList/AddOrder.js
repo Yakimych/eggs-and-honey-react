@@ -3,6 +3,7 @@ import type { AddOrderProps, AddOrderState } from '../../types/AddOrderTypes';
 import type { ProductType } from '../../types/OrderTypes';
 import React from 'react';
 import ProductSelector from '../ProductSelector/ProductSelector';
+import PropTypes from 'prop-types';
 
 class AddOrder extends React.Component<AddOrderProps, AddOrderState> {
   constructor(props: AddOrderProps) {
@@ -39,5 +40,11 @@ class AddOrder extends React.Component<AddOrderProps, AddOrderState> {
     );
   }
 }
+
+AddOrder.propTypes = {
+  productTypes: PropTypes.array.isRequired,
+  onAddOrder: PropTypes.func.isRequired,
+  activeProductTypeChanged: PropTypes.func.isRequired
+};
 
 export default AddOrder;

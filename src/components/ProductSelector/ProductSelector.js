@@ -2,6 +2,7 @@
 import React from 'react';
 import type { ProductType } from '../../types/OrderTypes';
 import type { ProductSelectorProps } from '../../types/ProductSelectorTypes';
+import PropTypes from 'prop-types';
 
 class ProductSelector extends React.Component<ProductSelectorProps> {
   productTypeIsActive = (productType: ProductType) =>
@@ -31,5 +32,11 @@ class ProductSelector extends React.Component<ProductSelectorProps> {
     );
   }
 }
+
+ProductSelector.propTypes = {
+  products: PropTypes.array.isRequired,
+  activeProductType: PropTypes.string,
+  onActiveChanged: PropTypes.func.isRequired
+};
 
 export default ProductSelector;
