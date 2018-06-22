@@ -52,7 +52,7 @@ class FakeDataProvider {
             name: orderToResolve.name,
             order: orderToResolve.order,
             datePlaced: orderToResolve.datePlaced,
-            dateResolved: ''
+            dateResolved: new Date().toString()
           };
         fakeResolvedOrders.items.push(newResolvedOrder);
         resolve(toResolvedOrder(newResolvedOrder));

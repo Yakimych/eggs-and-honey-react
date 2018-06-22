@@ -1,6 +1,8 @@
 // @flow
 import type { OrderRowProps } from '../../Types/OrderRowProps';
+import SpanOrEmpty from './SpanOrEmpty';
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const OrderRow = (props: OrderRowProps) => {
   return (
@@ -21,11 +23,10 @@ const OrderRow = (props: OrderRowProps) => {
   );
 };
 
-type SpanOrEmptyProps = {
-  value: ?string
-}
-
-const SpanOrEmpty = (props: SpanOrEmptyProps) =>
-  props.value ? (<span className="col">{props.value}</span>) : null;
+OrderRow.propTypes = {
+  action: PropTypes.func,
+  actionLabel: PropTypes.string,
+  displayOrder: PropTypes.object.isRequired
+};
 
 export default OrderRow;

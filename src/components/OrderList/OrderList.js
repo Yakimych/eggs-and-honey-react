@@ -3,8 +3,9 @@ import type { DisplayOrder } from '../../types/OrderTypes';
 import type { OrderListProps, OrderListColumn } from '../../types/OrderListTypes';
 import React from 'react';
 import OrderRow from './OrderRow';
+import PropTypes from 'prop-types';
 
-let OrderList = (props: OrderListProps) => {
+const OrderList = (props: OrderListProps) => {
   return (
     <div className="mt-3 mb-3">
       <div className="row">
@@ -19,6 +20,13 @@ let OrderList = (props: OrderListProps) => {
           displayOrder={order} />)}
     </div>
   );
+};
+
+OrderList.propTypes = {
+  action: PropTypes.func,
+  actionLabel: PropTypes.string,
+  displayOrders: PropTypes.array.isRequired,
+  columns: PropTypes.array.isRequired
 };
 
 export default OrderList;

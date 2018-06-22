@@ -5,6 +5,7 @@ import React from 'react';
 import OrderList from '../OrderList/OrderList';
 import ProductSelector from '../ProductSelector/ProductSelector';
 import OrderService from '../../services/OrderService';
+import PropTypes from 'prop-types';
 
 class AdminOrderListContainer extends React.Component<AdminOrderListProps, AdminOrderListState> {
   orders = [];
@@ -71,5 +72,11 @@ class AdminOrderListContainer extends React.Component<AdminOrderListProps, Admin
     );
   }
 }
+
+AdminOrderListContainer.propTypes = {
+  columns: PropTypes.array.isRequired,
+  orders: PropTypes.array.isRequired,
+  onOrderResolved: PropTypes.func.isRequired
+};
 
 export default AdminOrderListContainer;
