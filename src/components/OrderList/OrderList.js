@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 
 const OrderList = (props: OrderListProps) => {
   return (
-    <div className="mt-3 mb-3">
+    <div className="mt-3 mb-3 p-2 box-shadow">
       <div className="row">
         {props.actionLabel && <h6 className="col">{props.actionLabel}</h6>}
         {props.columns.map((column: OrderListColumn, index: number) => <h6 className="col" key={index}>{column.label}</h6>)}

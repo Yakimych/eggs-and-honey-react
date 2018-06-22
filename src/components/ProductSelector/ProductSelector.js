@@ -21,7 +21,7 @@ class ProductSelector extends React.Component<ProductSelectorProps> {
             <button
               key={index}
               type="button"
-              className={`btn btn-${this.productTypeIsActive(product) ? 'success' : 'light'}`}
+              className={`btn btn-${this.productTypeIsActive(product) ? 'success' : 'outline-info'}`}
               onClick={() => this.productTypeClicked(product)}
             >
               {product}
