@@ -1,5 +1,6 @@
 // @flow
 import type { ProductType, Order, ResolvedOrder, ApiOrder, ApiResolvedOrder, OrderItems, ResolvedOrderItems } from '../Types/OrderTypes';
+import type { IDataProvider } from '../Types/IDataProvider';
 import { toOrder, toResolvedOrder } from './ApiOrderMapping';
 let currentOrderId = 1;
 const fakeOrders: OrderItems = {
@@ -19,7 +20,7 @@ const fakeResolvedOrders: ResolvedOrderItems = {
   ]
 };
 
-class FakeDataProvider {
+class FakeDataProvider implements IDataProvider {
   getOrders = (): Promise<Array<Order>> =>
     new Promise((resolve) => {
       resolve(fakeOrders.items.slice().map(toOrder));

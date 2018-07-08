@@ -1,5 +1,15 @@
 // @flow
-import type { ProductType, Order, ResolvedOrder, OrderItems, ResolvedOrderItems, ResultWithId } from '../Types/OrderTypes';
+import type {
+  ProductType,
+  Order,
+  ApiOrder,
+  ResolvedOrder,
+  ApiResolvedOrder,
+  OrderItems,
+  ResolvedOrderItems,
+  ResultWithId
+} from '../Types/OrderTypes';
+import type { IDataProvider } from '../Types/IDataProvider';
 import { toOrder, toResolvedOrder } from './ApiOrderMapping';
 import axios from 'axios';
 import type { $AxiosXHR } from 'axios';
@@ -11,7 +21,7 @@ const addOrderUrl = `${apiUrl}orders`;
 const resolveOrderUrl = `${apiUrl}orders/resolve`;
 const unresolveOrderUrl = `${apiUrl}resolvedorders/unresolve`;
 
-class DataProvider {
+class DataProvider implements IDataProvider {
   getOrders = (): Promise<Array<Order>> =>
     axios
       .get(getOrdersUrl)
@@ -30,12 +40,12 @@ class DataProvider {
   resolveOrder = (orderId: number): Promise<ResolvedOrder> =>
     axios
       .post(resolveOrderUrl, { id: orderId })
-      .then((result: $AxiosXHR<ResolvedOrder>) => result.data);
+      .then((result: $AxiosXHR<ApiResolvedOrder>) => toResolvedOrder(result.data));
 
   unresolveOrder = (orderId: number): Promise<Order> =>
     axios
       .post(unresolveOrderUrl, { id: orderId })
-      .then((result: $AxiosXHR<Order>) => result.data);
+      .then((result: $AxiosXHR<ApiOrder>) => toOrder(result.data));
 }
 
 export default new DataProvider();
