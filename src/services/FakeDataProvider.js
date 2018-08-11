@@ -1,6 +1,6 @@
 // @flow
-import type { ProductType, Order, ResolvedOrder, ApiOrder, ApiResolvedOrder, OrderItems, ResolvedOrderItems } from '../Types/OrderTypes';
-import type { IDataProvider } from '../Types/IDataProvider';
+import type { ProductType, Order, ResolvedOrder, ApiOrder, ApiResolvedOrder, OrderItems, ResolvedOrderItems } from '../types/OrderTypes';
+import type { IDataProvider } from '../types/IDataProvider';
 import { toOrder, toResolvedOrder } from './ApiOrderMapping';
 let currentOrderId = 1;
 const fakeOrders: OrderItems = {

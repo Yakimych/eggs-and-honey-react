@@ -1,6 +1,6 @@
 // @flow
 import config from '../config';
-import type { IDataProvider } from '../Types/IDataProvider';
+import type { IDataProvider } from '../types/IDataProvider';
 import DataProvider from './DataProvider';
 import FakeDataProvider from './FakeDataProvider';
 

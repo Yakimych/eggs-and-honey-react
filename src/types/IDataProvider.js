@@ -1,5 +1,5 @@
 // @flow
-import type { ProductType, Order, ResolvedOrder } from '../Types/OrderTypes';
+import type { ProductType, Order, ResolvedOrder } from './OrderTypes';
 
 interface IDataProvider {
   getOrders(): Promise<Array<Order>>;

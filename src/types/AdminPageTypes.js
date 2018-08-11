@@ -1,4 +1,5 @@
-import type { Order, ResolvedOrder } from '../../types/OrderTypes';
+// @flow
+import type { Order, ResolvedOrder } from './OrderTypes';
 
 type AdminPageState = {
   orders: Array<Order>,

@@ -8,8 +8,8 @@ import type {
   OrderItems,
   ResolvedOrderItems,
   ResultWithId
-} from '../Types/OrderTypes';
-import type { IDataProvider } from '../Types/IDataProvider';
+} from '../types/OrderTypes';
+import type { IDataProvider } from '../types/IDataProvider';
 import { toOrder, toResolvedOrder } from './ApiOrderMapping';
 import axios from 'axios';
 import type { $AxiosXHR } from 'axios';
